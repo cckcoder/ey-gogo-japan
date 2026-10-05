@@ -4,6 +4,7 @@ import DayCarousel from '../components/DayCarousel.vue'
 import HeroCollage from '../components/HeroCollage.vue'
 import HomeTopBar from '../components/HomeTopBar.vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
+import ThemeToggle from '../components/ThemeToggle.vue'
 import ItineraryList from '../components/ItineraryList.vue'
 import PhotoCredits from '../components/PhotoCredits.vue'
 import { dayCover, fallbackSrc, heroSrc } from '../covers'
@@ -55,7 +56,10 @@ onBeforeUnmount(() => {
           <span class="grid h-9 w-9 place-items-center rounded-full bg-surface text-lg" aria-hidden="true">🇯🇵</span>
           Gogo Japan
         </span>
-        <LanguageToggle />
+        <div class="flex items-center gap-2">
+          <ThemeToggle />
+          <LanguageToggle />
+        </div>
       </nav>
 
       <div class="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 lg:pt-10">
@@ -68,7 +72,7 @@ onBeforeUnmount(() => {
           <h2 id="plan-by-day-heading" class="text-[17px] font-semibold text-ink md:text-xl">{{ t('planByDay') }}</h2>
           <button
             type="button"
-            class="text-[15px] font-medium text-primary hover:underline"
+            class="-mr-2 min-h-11 px-2 text-[15px] font-medium text-primary hover:underline"
             @click="scrollToItinerary"
           >{{ t('seeAll') }}</button>
         </div>

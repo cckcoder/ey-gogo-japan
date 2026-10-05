@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted } from 'vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
+import ThemeToggle from '../components/ThemeToggle.vue'
 import { cardContent } from '../content'
 import { dayCover } from '../covers'
 import { formatDayDate } from '../format'
@@ -58,7 +59,7 @@ onBeforeUnmount(() => {
       class="mx-auto md:max-w-2xl md:px-8 md:pt-6 lg:grid lg:max-w-6xl lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-14 lg:px-10 lg:pt-10"
     >
       <header
-        class="hero-fade relative h-[44vh] min-h-[280px] overflow-hidden md:h-[420px] md:rounded-[28px] lg:sticky lg:top-10 lg:h-[min(720px,calc(100vh-5rem))]"
+        class="hero-fade relative h-[44vh] min-h-[280px] overflow-hidden bg-surface md:h-[420px] md:rounded-[28px] lg:sticky lg:top-10 lg:h-[min(720px,calc(100vh-5rem))]"
       >
         <img
           :src="cover"
@@ -72,7 +73,10 @@ onBeforeUnmount(() => {
           :aria-label="t('back')"
           class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-black/30 text-xl text-white backdrop-blur-md transition-colors hover:bg-black/45"
         >←</a>
-        <LanguageToggle on-photo class="absolute right-4 top-4" />
+        <div class="absolute right-4 top-4 flex items-center gap-2">
+          <ThemeToggle on-photo />
+          <LanguageToggle on-photo />
+        </div>
       </header>
 
       <div class="flex min-h-full flex-col lg:min-h-[min(720px,calc(100vh-5rem))]">
@@ -92,7 +96,7 @@ onBeforeUnmount(() => {
               </p>
               <span
                 v-if="day.destination"
-                class="shrink-0 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white"
+                class="shrink-0 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-on-primary"
               >{{ day.destination }}</span>
             </div>
           </div>
@@ -129,7 +133,7 @@ onBeforeUnmount(() => {
           <a
             v-if="next !== null"
             :href="`#/day/${next}`"
-            class="ml-auto rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-float transition-opacity hover:opacity-90 dark:shadow-none lg:ml-0"
+            class="ml-auto rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary shadow-float transition-opacity hover:opacity-90 dark:shadow-none lg:ml-0"
           >Day {{ next }} →</a>
         </nav>
       </div>

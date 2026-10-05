@@ -6,20 +6,29 @@ Reference: a 3-screen travel concept (welcome with pill-shaped photo collage →
 
 ## Tokens
 
-Define as Tailwind v4 `@theme` colours, with dark overrides under `prefers-color-scheme: dark`.
+Define as Tailwind v4 `@theme` colours, with dark overrides under `:root[data-theme="dark"]`. The `dark:` variant follows the same attribute.
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
 | `bg` | `#FFFFFF` | `#0E1116` | page |
 | `surface` | `#F4F6F9` | `#181C23` | search-style fields, empty thumbs, chips |
 | `ink` | `#1E2330` | `#F1F3F7` | headings, body |
-| `muted` | `#8A909C` | `#98A0AD` | meta, dates, captions |
+| `muted` | `#687080` | `#98A0AD` | meta, dates, captions |
 | `line` | `#E9ECF1` | `#262B34` | hairlines |
-| `primary` | `#4A8FE7` | `#6AA6F2` | accent words, buttons, active states, links |
+| `primary` | `#2B6CC4` | `#6AA6F2` | accent words, buttons, active states, links |
+| `on-primary` | `#FFFFFF` | `#0E1116` | text on a `primary` fill (pills, active toggle) |
 | `primary-soft` | `#E7F0FC` | `#1B2A40` | chip/pill backgrounds |
 
 - Radius: photo cards `rounded-[28px]`, floating panels `rounded-[20px]`, list thumbnails `rounded-2xl`, buttons and chips `rounded-full`.
+- Contrast (v6): every text colour reaches 4.5:1 on its background in both themes: `muted` on `bg`/`surface`, `primary` on `bg`/`primary-soft`, and `on-primary` on `primary`. Check a new pair before you add it.
 - Depth: one soft shadow, used only on floating panels and the primary button: `0 10px 30px -12px rgb(16 24 40 / .18)`. Photo cards get no shadow. In dark mode, swap the shadow for a 1px `line` border.
+
+## Theme toggle (v7)
+
+- A 44px round button sits left of the language toggle, on Home (`surface` fill) and on the Day hero (translucent `bg-black/30`, like the back button), with an 8px gap.
+- It shows where a tap leads: a moon in light mode, a sun in dark mode. These are inline 20px SVGs with a 1.8px `currentColor` stroke, the only drawn glyphs in the app. They swap with a 200ms fade and a quarter turn, which is off under `prefers-reduced-motion`.
+- With no stored choice the theme follows the system and keeps following it live. A tap stores `light` or `dark` on the device (`gogo-theme`). An inline script in `index.html` applies it before first paint, so a dark choice never flashes white, and it also updates the `theme-color` meta.
+- It is a toggle button: `aria-pressed` is true in dark mode, and its label is `โหมดมืด` / `Dark mode`.
 
 ## Type
 
@@ -49,7 +58,7 @@ Hash-based views (`#/` and `#/day/:index`) driven by a tiny composable on top of
 
 ### Cover photos
 
-`src/data/covers.json` (owned by Claude Code, like the Snapshot) maps Published Card ids to an image in `src/assets/covers/`, and names a `hero` and a `fallback`. A Day's cover is the cover of its first card, else the fallback. Import images through Vite so they are hashed and precached. Every `<img>` sets `width`/`height` (or an aspect ratio) and `alt` (the card title), with `loading="lazy"` except the first carousel card and the Day hero.
+`src/data/covers.json` (owned by Claude Code, like the Snapshot) maps Published Card ids to an image in `src/assets/covers/`, and names a `hero` and a `fallback`. A Day's cover is the cover of its first card, else the fallback. Import images through Vite so they are hashed and precached. Every photo sits on a `surface` placeholder so nothing flashes white while it loads. Every `<img>` sets `width`/`height` (or an aspect ratio) and `alt` (the card title), with `loading="lazy"` except the first carousel card and the Day hero.
 
 ## Responsive (v4)
 
@@ -61,7 +70,7 @@ The phone layout above is the base. The other sizes reuse the same components; o
 
 ## Reading aids (carried over)
 
-- Map URLs render as the link label `แผนที่ ↗`, and other bare URLs as their hostname plus ` ↗`. They are styled as small `primary` links (`text-sm font-medium`), each on its own line.
+- Map URLs render as the link label `แผนที่ ↗`, and other bare URLs as their hostname plus ` ↗`. They are styled as small `primary` links (`text-sm font-medium`), each on its own line, with 6px of invisible vertical padding so the tap area is at least 24px tall.
 - A time at the start of a line becomes `<time class="slot">`, styled as a `primary-soft` pill with `primary` text, `tabular-nums font-semibold text-[13px] px-2 py-0.5 rounded-full`, followed by the text.
 - List markers use `primary` at 60% opacity. Paragraph spacing is `0.6em`. Extra blank lines from Trello produce no extra gaps.
 
@@ -72,4 +81,4 @@ The phone layout above is the base. The other sizes reuse the same components; o
 
 ## The bar
 
-It should look like a shipped app from a good studio, not a template. The reference's quality comes from photography, generous spacing, consistent radii and one accent colour. Match those. Use only the blue: no gradients except the photo itself, and no other accent colours. Use no icon library; the only glyphs are `←`, `→` and `↗`. The UI adds no emoji; the emoji already in Trello card titles stay as written. Text on photos sits only inside the frosted or solid panels, never directly on the image.
+It should look like a shipped app from a good studio, not a template. The reference's quality comes from photography, generous spacing, consistent radii and one accent colour. Match those. Use only the blue: no gradients except the photo itself, and no other accent colours. Use no icon library; the only glyphs are `←`, `→` and `↗`, plus the theme toggle's sun and moon. The UI adds no emoji; the emoji already in Trello card titles stay as written. Text on photos sits only inside the frosted or solid panels, never directly on the image.

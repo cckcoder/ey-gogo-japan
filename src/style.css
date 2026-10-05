@@ -1,15 +1,20 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Dark mode follows `data-theme` on <html>, set before first paint by index.html
+   and kept by src/theme.ts, so the in-app toggle can override the system. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* v3 palette (DESIGN.md v3). Bright surfaces, one blue, soft depth.
    Photo travel app. Utilities read these variables. */
 @theme {
   --color-bg: #ffffff;
   --color-surface: #f4f6f9;
   --color-ink: #1e2330;
-  --color-muted: #8a909c;
+  --color-muted: #687080;
   --color-line: #e9ecf1;
-  --color-primary: #4a8fe7;
+  --color-primary: #2b6cc4;
+  --color-on-primary: #ffffff;
   --color-primary-soft: #e7f0fc;
   --font-sans: "Poppins", "Prompt", system-ui, sans-serif;
   --shadow-float: 0 10px 30px -12px rgb(16 24 40 / 0.18);
@@ -17,16 +22,16 @@
 
 /* Dark palette. Unlayered so it beats the @theme values Tailwind emits into
    @layer theme, and so the utilities that read these variables switch too. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0e1116;
-    --color-surface: #181c23;
-    --color-ink: #f1f3f7;
-    --color-muted: #98a0ad;
-    --color-line: #262b34;
-    --color-primary: #6aa6f2;
-    --color-primary-soft: #1b2a40;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0e1116;
+  --color-surface: #181c23;
+  --color-ink: #f1f3f7;
+  --color-muted: #98a0ad;
+  --color-line: #262b34;
+  --color-primary: #6aa6f2;
+  --color-primary-soft: #1b2a40;
+  --color-on-primary: #0e1116;
 }
 
 /* Motion: smooth jumps, off when the user asks for less. */
@@ -126,6 +131,10 @@
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
+  /* A taller tap area (≥ 24px, WCAG target size) without shifting the text. */
+  display: inline-block;
+  padding-block: 6px;
+  margin-block: -6px;
 }
 
 /* Reading aids (v3): a time at the start of a card line, as a primary-soft
