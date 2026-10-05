@@ -4,6 +4,7 @@ import DayCarousel from '../components/DayCarousel.vue'
 import HeroCollage from '../components/HeroCollage.vue'
 import HomeTopBar from '../components/HomeTopBar.vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
+import ThemeToggle from '../components/ThemeToggle.vue'
 import ItineraryList from '../components/ItineraryList.vue'
 import PhotoCredits from '../components/PhotoCredits.vue'
 import { dayCover, fallbackSrc, heroSrc } from '../covers'
@@ -55,7 +56,10 @@ onBeforeUnmount(() => {
           <span class="grid h-9 w-9 place-items-center rounded-full bg-surface text-lg" aria-hidden="true">🇯🇵</span>
           Gogo Japan
         </span>
-        <LanguageToggle />
+        <div class="flex items-center gap-2">
+          <ThemeToggle />
+          <LanguageToggle />
+        </div>
       </nav>
 
       <div class="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 lg:pt-10">

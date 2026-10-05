@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Japan Trip 2026</title>
     <meta name="description" content="แผนเที่ยวญี่ปุ่น 24 Nov – 2 Dec 2026 ใช้งานได้แม้ไม่มีอินเทอร์เน็ต" />
-    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0E1116" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <script>
+      // Set the colour theme before first paint so a dark choice never flashes white (src/theme.ts).
+      (function () {
+        var stored = null
+        try { stored = localStorage.getItem('gogo-theme') } catch (e) {}
+        var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1116' : '#FFFFFF')
+      })()
+    </script>
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />

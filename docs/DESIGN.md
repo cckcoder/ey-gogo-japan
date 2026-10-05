@@ -6,7 +6,7 @@ Reference: a 3-screen travel concept (welcome with pill-shaped photo collage →
 
 ## Tokens
 
-Define as Tailwind v4 `@theme` colours, with dark overrides under `prefers-color-scheme: dark`.
+Define as Tailwind v4 `@theme` colours, with dark overrides under `:root[data-theme="dark"]`. The `dark:` variant follows the same attribute.
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
@@ -22,6 +22,13 @@ Define as Tailwind v4 `@theme` colours, with dark overrides under `prefers-color
 - Radius: photo cards `rounded-[28px]`, floating panels `rounded-[20px]`, list thumbnails `rounded-2xl`, buttons and chips `rounded-full`.
 - Contrast (v6): every text colour reaches 4.5:1 on its background in both themes: `muted` on `bg`/`surface`, `primary` on `bg`/`primary-soft`, and `on-primary` on `primary`. Check a new pair before you add it.
 - Depth: one soft shadow, used only on floating panels and the primary button: `0 10px 30px -12px rgb(16 24 40 / .18)`. Photo cards get no shadow. In dark mode, swap the shadow for a 1px `line` border.
+
+## Theme toggle (v7)
+
+- A 44px round button sits left of the language toggle, on Home (`surface` fill) and on the Day hero (translucent `bg-black/30`, like the back button), with an 8px gap.
+- It shows where a tap leads: a moon in light mode, a sun in dark mode. These are inline 20px SVGs with a 1.8px `currentColor` stroke, the only drawn glyphs in the app. They swap with a 200ms fade and a quarter turn, which is off under `prefers-reduced-motion`.
+- With no stored choice the theme follows the system and keeps following it live. A tap stores `light` or `dark` on the device (`gogo-theme`). An inline script in `index.html` applies it before first paint, so a dark choice never flashes white, and it also updates the `theme-color` meta.
+- It is a toggle button: `aria-pressed` is true in dark mode, and its label is `โหมดมืด` / `Dark mode`.
 
 ## Type
 
@@ -74,4 +81,4 @@ The phone layout above is the base. The other sizes reuse the same components; o
 
 ## The bar
 
-It should look like a shipped app from a good studio, not a template. The reference's quality comes from photography, generous spacing, consistent radii and one accent colour. Match those. Use only the blue: no gradients except the photo itself, and no other accent colours. Use no icon library; the only glyphs are `←`, `→` and `↗`. The UI adds no emoji; the emoji already in Trello card titles stay as written. Text on photos sits only inside the frosted or solid panels, never directly on the image.
+It should look like a shipped app from a good studio, not a template. The reference's quality comes from photography, generous spacing, consistent radii and one accent colour. Match those. Use only the blue: no gradients except the photo itself, and no other accent colours. Use no icon library; the only glyphs are `←`, `→` and `↗`, plus the theme toggle's sun and moon. The UI adds no emoji; the emoji already in Trello card titles stay as written. Text on photos sits only inside the frosted or solid panels, never directly on the image.

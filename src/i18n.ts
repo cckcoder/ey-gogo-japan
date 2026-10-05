@@ -22,6 +22,7 @@ const messages = {
     keyboardHint: '← → เปลี่ยนวัน · Esc กลับหน้าหลัก',
     mapLink: 'แผนที่',
     language: 'ภาษา',
+    darkMode: 'โหมดมืด',
   },
   en: {
     planByDay: 'Plan by Day',
@@ -39,6 +40,7 @@ const messages = {
     keyboardHint: '← → to switch Day · Esc for Home',
     mapLink: 'Map',
     language: 'Language',
+    darkMode: 'Dark mode',
   },
 } satisfies Record<Locale, Record<string, string>>
 

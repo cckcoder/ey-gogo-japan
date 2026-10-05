@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted } from 'vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
+import ThemeToggle from '../components/ThemeToggle.vue'
 import { cardContent } from '../content'
 import { dayCover } from '../covers'
 import { formatDayDate } from '../format'
@@ -72,7 +73,10 @@ onBeforeUnmount(() => {
           :aria-label="t('back')"
           class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-black/30 text-xl text-white backdrop-blur-md transition-colors hover:bg-black/45"
         >←</a>
-        <LanguageToggle on-photo class="absolute right-4 top-4" />
+        <div class="absolute right-4 top-4 flex items-center gap-2">
+          <ThemeToggle on-photo />
+          <LanguageToggle on-photo />
+        </div>
       </header>
 
       <div class="flex min-h-full flex-col lg:min-h-[min(720px,calc(100vh-5rem))]">
