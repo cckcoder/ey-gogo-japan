@@ -13,12 +13,14 @@ Define as Tailwind v4 `@theme` colours, with dark overrides under `prefers-color
 | `bg` | `#FFFFFF` | `#0E1116` | page |
 | `surface` | `#F4F6F9` | `#181C23` | search-style fields, empty thumbs, chips |
 | `ink` | `#1E2330` | `#F1F3F7` | headings, body |
-| `muted` | `#8A909C` | `#98A0AD` | meta, dates, captions |
+| `muted` | `#687080` | `#98A0AD` | meta, dates, captions |
 | `line` | `#E9ECF1` | `#262B34` | hairlines |
-| `primary` | `#4A8FE7` | `#6AA6F2` | accent words, buttons, active states, links |
+| `primary` | `#2B6CC4` | `#6AA6F2` | accent words, buttons, active states, links |
+| `on-primary` | `#FFFFFF` | `#0E1116` | text on a `primary` fill (pills, active toggle) |
 | `primary-soft` | `#E7F0FC` | `#1B2A40` | chip/pill backgrounds |
 
 - Radius: photo cards `rounded-[28px]`, floating panels `rounded-[20px]`, list thumbnails `rounded-2xl`, buttons and chips `rounded-full`.
+- Contrast (v6): every text colour reaches 4.5:1 on its background in both themes: `muted` on `bg`/`surface`, `primary` on `bg`/`primary-soft`, and `on-primary` on `primary`. Check a new pair before you add it.
 - Depth: one soft shadow, used only on floating panels and the primary button: `0 10px 30px -12px rgb(16 24 40 / .18)`. Photo cards get no shadow. In dark mode, swap the shadow for a 1px `line` border.
 
 ## Type
@@ -49,7 +51,7 @@ Hash-based views (`#/` and `#/day/:index`) driven by a tiny composable on top of
 
 ### Cover photos
 
-`src/data/covers.json` (owned by Claude Code, like the Snapshot) maps Published Card ids to an image in `src/assets/covers/`, and names a `hero` and a `fallback`. A Day's cover is the cover of its first card, else the fallback. Import images through Vite so they are hashed and precached. Every `<img>` sets `width`/`height` (or an aspect ratio) and `alt` (the card title), with `loading="lazy"` except the first carousel card and the Day hero.
+`src/data/covers.json` (owned by Claude Code, like the Snapshot) maps Published Card ids to an image in `src/assets/covers/`, and names a `hero` and a `fallback`. A Day's cover is the cover of its first card, else the fallback. Import images through Vite so they are hashed and precached. Every photo sits on a `surface` placeholder so nothing flashes white while it loads. Every `<img>` sets `width`/`height` (or an aspect ratio) and `alt` (the card title), with `loading="lazy"` except the first carousel card and the Day hero.
 
 ## Responsive (v4)
 
@@ -61,7 +63,7 @@ The phone layout above is the base. The other sizes reuse the same components; o
 
 ## Reading aids (carried over)
 
-- Map URLs render as the link label `แผนที่ ↗`, and other bare URLs as their hostname plus ` ↗`. They are styled as small `primary` links (`text-sm font-medium`), each on its own line.
+- Map URLs render as the link label `แผนที่ ↗`, and other bare URLs as their hostname plus ` ↗`. They are styled as small `primary` links (`text-sm font-medium`), each on its own line, with 6px of invisible vertical padding so the tap area is at least 24px tall.
 - A time at the start of a line becomes `<time class="slot">`, styled as a `primary-soft` pill with `primary` text, `tabular-nums font-semibold text-[13px] px-2 py-0.5 rounded-full`, followed by the text.
 - List markers use `primary` at 60% opacity. Paragraph spacing is `0.6em`. Extra blank lines from Trello produce no extra gaps.
 

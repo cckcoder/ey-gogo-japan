@@ -21,7 +21,7 @@ defineProps<{ days: Day[]; todayIndex: number | null }>()
     >
       <a
         :href="`#/day/${day.index}`"
-        class="group relative block aspect-[4/5] overflow-hidden rounded-[28px] transition-transform active:scale-[0.98]"
+        class="group relative block aspect-[4/5] overflow-hidden rounded-[28px] bg-surface transition-transform active:scale-[0.98]"
       >
         <img
           :src="dayCover(day)"
@@ -33,7 +33,7 @@ defineProps<{ days: Day[]; todayIndex: number | null }>()
         />
         <span
           v-if="todayIndex === day.index"
-          class="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white"
+          class="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-on-primary"
         >{{ t('today') }}</span>
         <div
           class="absolute inset-x-3 bottom-3 rounded-[20px] bg-white/85 p-4 backdrop-blur-md dark:bg-surface/85"

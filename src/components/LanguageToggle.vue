@@ -26,7 +26,7 @@ const options: { value: Locale; label: string; name: string }[] = [
       class="min-h-9 min-w-11 rounded-full px-3 text-[13px] font-semibold transition-colors"
       :class="
         locale === option.value
-          ? 'bg-primary text-white shadow-float dark:shadow-none'
+          ? 'bg-primary text-on-primary shadow-float dark:shadow-none'
           : onPhoto
             ? 'text-white/85 hover:text-white'
             : 'text-muted hover:text-ink'

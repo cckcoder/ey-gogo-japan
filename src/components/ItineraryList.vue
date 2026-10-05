@@ -23,7 +23,7 @@ function titleText(day: Day): string {
         :href="`#/day/${day.index}`"
         class="group flex min-h-16 items-center gap-4 border-b border-line py-2 active:bg-surface"
       >
-        <span class="h-14 w-14 shrink-0 overflow-hidden rounded-2xl">
+        <span class="h-14 w-14 shrink-0 overflow-hidden rounded-2xl bg-surface">
           <img
             :src="dayCover(day)"
             alt=""

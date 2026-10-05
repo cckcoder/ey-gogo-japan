@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
           <h2 id="plan-by-day-heading" class="text-[17px] font-semibold text-ink md:text-xl">{{ t('planByDay') }}</h2>
           <button
             type="button"
-            class="text-[15px] font-medium text-primary hover:underline"
+            class="-mr-2 min-h-11 px-2 text-[15px] font-medium text-primary hover:underline"
             @click="scrollToItinerary"
           >{{ t('seeAll') }}</button>
         </div>
