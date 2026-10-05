@@ -25,6 +25,10 @@ const messages = {
     darkMode: 'โหมดมืด',
     packing: 'เตรียมของ',
     packingTitle: 'เตรียมของไปญี่ปุ่น',
+    // The Packing page title splits so its key word carries the accent:
+    // packingTitleLead + packingTitleAccent === packingTitle.
+    packingTitleLead: 'เตรียมของไป',
+    packingTitleAccent: 'ญี่ปุ่น',
     packingTeaser: 'เสื้อผ้ากี่ชิ้น เช็กลิสต์ และอากาศช่วงที่ไป',
     weather: 'อากาศช่วงที่ไป',
     weatherNote: 'ค่าเฉลี่ยโดยประมาณ ไม่ใช่พยากรณ์ แถบคือช่วงต่ำสุด–สูงสุดบนสเกล 0–30 °C',
@@ -46,6 +50,7 @@ const messages = {
     kitNote: 'เสื้อผ้าผู้ชายจาก decathlon.co.th ราคา ณ',
     kitNoteEnd: 'ราคาอาจเปลี่ยน',
     kitTotal: 'รวม',
+    opensInNewTab: 'เปิดในแท็บใหม่',
   },
   en: {
     planByDay: 'Plan by Day',
@@ -66,6 +71,8 @@ const messages = {
     darkMode: 'Dark mode',
     packing: 'Packing',
     packingTitle: 'Packing for Japan',
+    packingTitleLead: 'Packing for ',
+    packingTitleAccent: 'Japan',
     packingTeaser: 'How many clothes, a checklist and the weather',
     weather: 'Weather on the Trip',
     weatherNote: 'Rough averages, not a forecast. Bars show low to high on a 0–30 °C scale.',
@@ -87,6 +94,7 @@ const messages = {
     kitNote: "Men's clothing from decathlon.co.th, prices as of",
     kitNoteEnd: 'Prices may change.',
     kitTotal: 'Total',
+    opensInNewTab: 'opens in new tab',
   },
 } satisfies Record<Locale, Record<string, string>>
 

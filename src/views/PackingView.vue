@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
 import ThemeToggle from '../components/ThemeToggle.vue'
 import { formatDayDate } from '../format'
@@ -18,6 +18,7 @@ import {
   saveChecked,
   weather,
   WEATHER_SCALE,
+  type Checklist,
   type Unit,
 } from '../packing'
 
@@ -25,12 +26,19 @@ const totals = packingTotals(quantities)
 const kitSum = kitTotal(kit)
 const checked = ref(readChecked())
 
+const allChecklistIds = checklists.flatMap((list) => list.items.map((item) => item.id))
+const tickedTotal = computed(() => allChecklistIds.filter((id) => checked.value.has(id)).length)
+
 const span = WEATHER_SCALE.max - WEATHER_SCALE.min
 function barStyle(low: number, high: number): Record<string, string> {
   return {
     left: `${((low - WEATHER_SCALE.min) / span) * 100}%`,
     width: `${((high - low) / span) * 100}%`,
   }
+}
+
+function barWidth(value: number, total: number): Record<string, string> {
+  return { width: total === 0 ? '0%' : `${(value / total) * 100}%` }
 }
 
 function count(value: number, unit: Unit): string {
@@ -49,12 +57,33 @@ function toggle(id: string): void {
   saveChecked(next)
 }
 
+function itemIds(list: Checklist): string[] {
+  return list.items.map((item) => item.id)
+}
+
+function done(ids: string[]): number {
+  return ids.filter((id) => checked.value.has(id)).length
+}
+
 function progress(ids: string[]): string {
-  return `${ids.filter((id) => checked.value.has(id)).length}/${ids.length}`
+  return `${done(ids)}/${ids.length}`
+}
+
+// Desktop keyboard on par with a Day: Esc goes Home. No modifier chords.
+function onKeydown(event: KeyboardEvent): void {
+  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+  if (event.key === 'Escape') {
+    window.location.hash = '#/'
+  }
 }
 
 onMounted(() => {
   window.scrollTo(0, 0)
+  window.addEventListener('keydown', onKeydown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
 })
 </script>
 
@@ -74,8 +103,9 @@ onMounted(() => {
       </nav>
 
       <header class="mt-6">
-        <p class="text-[13px] font-semibold uppercase tracking-[0.16em] text-primary">EY Gogo Japan</p>
-        <h1 class="mt-2 text-[28px] font-semibold leading-tight md:text-[40px]">{{ t('packingTitle') }}</h1>
+        <h1 class="text-[28px] font-semibold leading-tight md:text-[40px]">{{ t('packingTitleLead')
+          }}<span class="text-primary">{{ t('packingTitleAccent') }}</span></h1>
+        <p class="mt-2 text-[15px] text-muted">{{ t('packingTeaser') }}</p>
       </header>
 
       <!-- Weather -->
@@ -88,9 +118,9 @@ onMounted(() => {
               <p class="text-[15px] font-semibold">{{ pick(place.name, locale) }}</p>
               <p class="text-[13px] text-muted">{{ place.days }}</p>
             </div>
-            <p class="tabular-nums">
+            <p class="flex items-baseline gap-1 tabular-nums">
               <span class="text-[28px] font-semibold">{{ place.low }}–{{ place.high }}</span>
-              <span class="text-muted"> °C</span>
+              <span class="text-muted">°C</span>
             </p>
             <div class="relative h-1.5 rounded-full bg-line" aria-hidden="true">
               <span class="absolute inset-y-0 rounded-full bg-primary" :style="barStyle(place.low, place.high)"></span>
@@ -103,7 +133,7 @@ onMounted(() => {
       <!-- Layering -->
       <section class="mt-10" aria-labelledby="layers-heading">
         <h2 id="layers-heading" class="text-[17px] font-semibold md:text-xl">{{ t('layering') }}</h2>
-        <p class="mt-1 text-[15px] text-muted">{{ t('layeringNote') }}</p>
+        <p class="mt-1 text-[13px] text-muted">{{ t('layeringNote') }}</p>
         <dl class="mt-3 border-t border-line">
           <div
             v-for="layer in layers"
@@ -119,7 +149,7 @@ onMounted(() => {
       <!-- How many -->
       <section class="mt-10" aria-labelledby="qty-heading">
         <h2 id="qty-heading" class="text-[17px] font-semibold md:text-xl">{{ t('howMany') }}</h2>
-        <p class="mt-1 text-[15px] text-muted">{{ t('howManyNote') }}</p>
+        <p class="mt-1 text-[13px] text-muted">{{ t('howManyNote') }}</p>
 
         <div class="mt-4 grid grid-cols-2 gap-3">
           <p class="grid rounded-[20px] bg-primary-soft px-4 py-3">
@@ -163,9 +193,13 @@ onMounted(() => {
       <!-- Day by Day -->
       <section class="mt-10" aria-labelledby="days-heading">
         <h2 id="days-heading" class="text-[17px] font-semibold md:text-xl">{{ t('byDay') }}</h2>
-        <ul class="mt-3 grid gap-3">
-          <li v-for="tip in dayTips" :key="tip.days" class="grid gap-1 sm:grid-cols-[72px_1fr] sm:gap-3">
-            <span class="slot justify-self-start">{{ tip.days }}</span>
+        <ul class="mt-3 border-t border-line">
+          <li
+            v-for="tip in dayTips"
+            :key="tip.days"
+            class="grid gap-2 border-b border-line py-3 sm:grid-cols-[72px_1fr] sm:items-start sm:gap-3"
+          >
+            <span class="slot justify-self-start min-w-[72px] text-center">{{ tip.days }}</span>
             <p class="text-[15px] leading-[1.7]">{{ pick(tip.text, locale) }}</p>
           </li>
         </ul>
@@ -173,14 +207,50 @@ onMounted(() => {
 
       <!-- Checklist -->
       <section class="mt-10" aria-labelledby="check-heading">
-        <h2 id="check-heading" class="text-[17px] font-semibold md:text-xl">{{ t('checklist') }}</h2>
+        <div class="flex items-baseline justify-between gap-3">
+          <h2 id="check-heading" class="text-[17px] font-semibold md:text-xl">{{ t('checklist') }}</h2>
+          <span class="text-[13px] font-medium text-muted tabular-nums" aria-hidden="true">{{ progress(allChecklistIds) }}</span>
+        </div>
         <p class="mt-1 text-[13px] text-muted">{{ t('checklistNote') }}</p>
-        <div class="mt-4 grid gap-8 md:grid-cols-2">
+        <div
+          class="mt-3 h-1.5 overflow-hidden rounded-full bg-line"
+          role="progressbar"
+          :aria-valuenow="tickedTotal"
+          aria-valuemin="0"
+          :aria-valuemax="allChecklistIds.length"
+          :aria-valuetext="progress(allChecklistIds)"
+          :aria-label="t('checklist')"
+        >
+          <span
+            class="block h-full rounded-full bg-primary transition-[width] duration-300 motion-reduce:transition-none"
+            :style="barWidth(tickedTotal, allChecklistIds.length)"
+          ></span>
+        </div>
+
+        <div class="mt-6 grid gap-8 md:grid-cols-2">
           <div v-for="list in checklists" :key="list.title.en">
-            <h3 class="flex items-baseline justify-between gap-2 text-[15px] font-semibold">
-              {{ pick(list.title, locale) }}
-              <span class="text-[12px] font-medium text-muted tabular-nums">{{ progress(list.items.map((item) => item.id)) }}</span>
-            </h3>
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="text-[15px] font-semibold">{{ pick(list.title, locale) }}</h3>
+              <span
+                class="text-[12px] font-medium tabular-nums"
+                :class="done(itemIds(list)) === list.items.length ? 'text-primary' : 'text-muted'"
+                aria-hidden="true"
+              >{{ progress(itemIds(list)) }}</span>
+            </div>
+            <div
+              class="mt-2 h-1 overflow-hidden rounded-full bg-line"
+              role="progressbar"
+              :aria-valuenow="done(itemIds(list))"
+              aria-valuemin="0"
+              :aria-valuemax="list.items.length"
+              :aria-valuetext="progress(itemIds(list))"
+              :aria-label="pick(list.title, locale)"
+            >
+              <span
+                class="block h-full rounded-full bg-primary transition-[width] duration-300 motion-reduce:transition-none"
+                :style="barWidth(done(itemIds(list)), list.items.length)"
+              ></span>
+            </div>
             <ul class="mt-1">
               <li v-for="item in list.items" :key="item.id" class="border-b border-line">
                 <label class="flex min-h-11 cursor-pointer items-start gap-3 py-2.5">
@@ -220,7 +290,7 @@ onMounted(() => {
             >
               <span class="min-w-0 flex-1">
                 <span class="block text-[13px] font-semibold text-primary">{{ pick(item.layer, locale) }}</span>
-                <span class="block text-[15px] font-medium transition-colors group-hover:text-primary">{{ item.name }} ↗</span>
+                <span class="block text-[15px] font-medium transition-colors group-hover:text-primary">{{ item.name }} ↗<span class="sr-only"> ({{ t('opensInNewTab') }})</span></span>
                 <span class="block text-[13px] text-muted">{{ pick(item.why, locale) }}</span>
               </span>
               <span class="shrink-0 text-right tabular-nums">
@@ -230,7 +300,7 @@ onMounted(() => {
             </a>
           </li>
         </ul>
-        <p class="mt-3 flex items-baseline justify-between text-[15px]">
+        <p class="mt-3 flex items-baseline justify-between gap-3 rounded-[20px] bg-primary-soft px-4 py-3 text-[15px]">
           <span class="font-semibold">{{ t('kitTotal') }} · {{ kit.length }} {{ t('pieces') }}</span>
           <span class="text-xl font-semibold text-primary tabular-nums">{{ baht(kitSum) }}</span>
         </p>
