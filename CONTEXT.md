@@ -36,6 +36,10 @@ _Avoid_: Cache, sync data
 The English version of a Published Card, written by Claude Code. It is valid only while it matches the card's current Thai text; otherwise the card shows in Thai.
 _Avoid_: i18n string, locale file
 
+**Packing List**:
+The app's guide to what to bring on this Trip: weather, how many clothes to pack, Day-by-Day reminders, a checklist and a suggested Decathlon kit. Claude Code writes it from the Published Cards; it is not part of the Snapshot.
+_Avoid_: Checklist (that is one section of it), shopping list
+
 **Sensitive Detail**:
 Email addresses, payment amounts and reservation numbers. They belong only on unpublished Plan Cards; keeping them off Published Cards is the author's responsibility.
 _Avoid_: Private data, secrets

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from './route'
 import DayView from './views/DayView.vue'
 import HomeView from './views/HomeView.vue'
+import PackingView from './views/PackingView.vue'
 
 const route = useRoute()
 const dayIndex = computed(() => (route.value.name === 'day' ? route.value.index : null))
@@ -10,5 +11,6 @@ const dayIndex = computed(() => (route.value.name === 'day' ? route.value.index 
 
 <template>
   <HomeView v-if="route.name === 'home'" />
+  <PackingView v-else-if="route.name === 'packing'" />
   <DayView v-else-if="dayIndex !== null" :key="dayIndex" :index="dayIndex" />
 </template>

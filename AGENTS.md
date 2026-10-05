@@ -17,4 +17,5 @@ Offline-first PWA that shows a 9-day Japan Trip (Day 0–8, 24/11–2/12/2026) f
 - **The app has no Trello code or credentials.** `npm run build` (also run by Cloudflare Pages) only bundles the committed Snapshot.
 - **Only Published Cards reach the app.** These are cards with the `Gogo` label, matched case-insensitively.
 - **The app works with zero network after first load.** Bundle every runtime asset and precache it. Self-host fonts and photos through the bundle so they precache; the app makes no request to a CDN at runtime.
+- **The Packing List content (`src/packing.ts`) is owned by Claude Code too.** It is long-form copy in both languages, kept out of `i18n.ts`; its Decathlon prices carry the date they were read (`KIT_PRICES_CHECKED`). Link to products; never bundle shop photos.
 - **UI copy lives in `src/i18n.ts` in both Thai and English.** Every visible string goes through `t()`. The `Day N` label stays the same in both languages ("วันที่ 4" would read as a calendar date). Card text comes from `cardContent()`, never straight from the Snapshot.

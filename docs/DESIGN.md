@@ -56,6 +56,17 @@ Hash-based views (`#/` and `#/day/:index`) driven by a tiny composable on top of
 3. **Body**: each Published Card of the Day in order, with its title as a `text-[17px] font-semibold` subheading when the Day has more than one card, then the rendered markdown with the reading aids below.
 4. **Bottom bar**: sticky, safe-area aware, with two pills. `← Day N-1` is outlined (`border primary`, `primary` text). `Day N+1 →` is filled (`primary` bg, white text, shadow). It skips to the nearest Day that has cards; a pill is hidden when there is no such Day.
 
+### Packing List (`#/packing`)
+
+Reached from a `primary-soft` panel on Home, after the Itinerary: a 56px `primary` square with the item count, the title `เตรียมของไปญี่ปุ่น` / `Packing for Japan`, a one-line teaser and `→`. The page is one `max-w-3xl` column with a round `surface` back button, the theme and language toggles, then:
+
+1. **Weather**: three `surface` tiles (`rounded-[20px]`), each with the place, its Days, the low–high in 28px tabular numbers and a `primary` range bar on a 0–30 °C track.
+2. **Layering**: a `dl` of base / mid / outer, hairline-separated.
+3. **How many**: two stat tiles (wash once in `primary-soft`, no wash in `surface`), then a table that fits the phone width (no min width): item and note on the left, two right-aligned tabular count columns, group rows on `surface` in `primary`.
+4. **Day by Day**: the `slot` pill (`Day 1`) beside each reminder.
+5. **Checklist**: three lists with an `n/total` count. Each row is a ≥ 44px `label` with a 20px rounded checkbox that fills `primary` with a CSS-drawn tick (no glyph). Ticks are stored per device under `gogo-packing-done`.
+6. **Decathlon kit**: hairline rows linking out (`↗`), layer eyebrow in `primary`, price right-aligned with any old price struck through, and a total. No product photos: they are the shop's, not licensed for the bundle.
+
 ### Cover photos
 
 `src/data/covers.json` (owned by Claude Code, like the Snapshot) maps Published Card ids to an image in `src/assets/covers/`, and names a `hero` and a `fallback`. A Day's cover is the cover of its first card, else the fallback. Import images through Vite so they are hashed and precached. Every photo sits on a `surface` placeholder so nothing flashes white while it loads. Every `<img>` sets `width`/`height` (or an aspect ratio) and `alt` (the card title), with `loading="lazy"` except the first carousel card and the Day hero.
