@@ -12,6 +12,7 @@ import { formatGeneratedAt } from '../format'
 import { t } from '../i18n'
 import { snapshot } from '../snapshot'
 import { findTodayIndex } from '../today'
+import { packingTotals, quantities } from '../packing'
 
 // Module-level, so returning to Home from a Day restores where the traveller was.
 let savedScroll = 0
@@ -34,6 +35,9 @@ const carouselDays = computed(() => {
 const collageCovers = cardDays.slice(0, 2).map(dayCover)
 
 const generatedAt = formatGeneratedAt(snapshot.generatedAt)
+
+// The badge on the Packing List entry: items to pack with one wash.
+const packingCount = packingTotals(quantities).wash
 
 function scrollToItinerary(): void {
   document.getElementById('itinerary')?.scrollIntoView({ block: 'start' })
@@ -86,6 +90,22 @@ onBeforeUnmount(() => {
       >
         <h2 id="itinerary-heading" class="text-[17px] font-semibold text-ink md:text-xl">{{ t('itinerary') }}</h2>
         <ItineraryList :days="snapshot.days" />
+      </section>
+
+      <section class="mt-8 px-5 md:mt-12 md:px-8 lg:mt-16 lg:px-0" aria-labelledby="packing-heading">
+        <a
+          href="#/packing"
+          class="group flex items-center gap-4 rounded-[20px] bg-primary-soft p-5 transition-transform active:scale-[0.98] motion-reduce:transition-none"
+        >
+          <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary text-xl font-semibold text-on-primary tabular-nums">
+            {{ packingCount }}
+          </span>
+          <span class="min-w-0 flex-1">
+            <span id="packing-heading" class="block text-[17px] font-semibold text-ink group-hover:text-primary">{{ t('packingTitle') }}</span>
+            <span class="mt-0.5 block text-[13px] text-muted">{{ t('packingTeaser') }}</span>
+          </span>
+          <span class="text-primary" aria-hidden="true">→</span>
+        </a>
       </section>
 
       <PhotoCredits :generated-at="generatedAt" />

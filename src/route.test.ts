@@ -18,6 +18,10 @@ describe('parseRoute', () => {
     expect(parseRoute('#/nope')).toEqual({ name: 'home' })
   })
 
+  it('parses the Packing List hash', () => {
+    expect(parseRoute('#/packing')).toEqual({ name: 'packing' })
+  })
+
   it('parses an empty hash as home', () => {
     expect(parseRoute('')).toEqual({ name: 'home' })
   })
