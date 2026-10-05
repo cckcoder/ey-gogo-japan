@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* v3 palette (DESIGN.md v3). Bright surfaces, one blue, soft depth.
+   Photo travel app. Utilities read these variables. */
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f9;
+  --color-ink: #1e2330;
+  --color-muted: #8a909c;
+  --color-line: #e9ecf1;
+  --color-primary: #4a8fe7;
+  --color-primary-soft: #e7f0fc;
+  --font-sans: "Poppins", "Prompt", system-ui, sans-serif;
+  --shadow-float: 0 10px 30px -12px rgb(16 24 40 / 0.18);
+}
+
+/* Dark palette. Unlayered so it beats the @theme values Tailwind emits into
+   @layer theme, and so the utilities that read these variables switch too. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0e1116;
+    --color-surface: #181c23;
+    --color-ink: #f1f3f7;
+    --color-muted: #98a0ad;
+    --color-line: #262b34;
+    --color-primary: #6aa6f2;
+    --color-primary-soft: #1b2a40;
+  }
+}
+
+/* Motion: smooth jumps, off when the user asks for less. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Keyboard focus is visible on every link and button, in the one accent. */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  details > summary::marker {
+    color: var(--color-muted);
+  }
+}
+
+/* Card body. Retune the typography plugin's grey prose variables to the v3
+   palette. Unlayered so it wins over `dark:prose-invert` in the utilities
+   layer. The variables already switch with the palette. */
+.card-prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-lead: var(--color-ink);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-muted);
+  --tw-prose-hr: var(--color-line);
+  --tw-prose-quotes: var(--color-muted);
+  --tw-prose-quote-borders: var(--color-line);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-ink);
+  --tw-prose-pre-code: var(--color-ink);
+  --tw-prose-pre-bg: transparent;
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line);
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 65ch;
+  overflow-wrap: break-word;
+}
+
+/* Card rhythm (v2/v3): paragraph spacing is 0.6em so the extra blank lines
+   Trello leaves behind do not open large gaps. Unlayered, so it beats the
+   typography plugin's 1.25em defaults. First/last children keep the
+   container edge. */
+.card-prose p {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.card-prose > :first-child {
+  margin-top: 0;
+}
+
+.card-prose > :last-child {
+  margin-bottom: 0;
+}
+
+/* Reading aids (v3): list markers use primary at 60% opacity. */
+.card-prose li::marker {
+  color: color-mix(in srgb, var(--color-primary) 60%, transparent);
+}
+
+/* Links (v3): primary text and a matching underline. The `.prose` prefix
+   raises specificity above the typography plugin's `text-decoration`
+   shorthand, which would otherwise reset the underline colour to
+   currentColor. */
+.prose.card-prose a {
+  color: var(--color-primary);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: break-word;
+}
+
+/* Reading aids (v3): collapsed URL links are small primary links with no
+   underline. Scoped higher than the base `.prose.card-prose a` rule. */
+.prose.card-prose a.url-link {
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Reading aids (v3): a time at the start of a card line, as a primary-soft
+   pill with primary text. */
+.slot {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  margin-right: 0.4em;
+}
+
+/* Tighter list indentation than the typography default (1.625em / 0.375em),
+   so list text keeps its width on a phone. */
+.card-prose ul,
+.card-prose ol {
+  padding-inline-start: 1.1em;
+}
+
+.card-prose ul > li,
+.card-prose ol > li {
+  padding-inline-start: 0.25em;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* The Day bottom bar clears the iPhone home indicator. */
+.safe-bottom {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+}
+
+/* Home -> Day: the hero fades in. Off when the user asks for less motion. */
+.hero-fade {
+  animation: hero-fade 200ms ease-out both;
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade {
+    animation: none;
+  }
+}

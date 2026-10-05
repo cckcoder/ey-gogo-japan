@@ -1,0 +1,78 @@
+{
+  "hero": "hero-fuji",
+  "fallback": "fallback-fuji",
+  "cards": {
+    "6aa12d481beb4e0c3d4a5d55": "akihabara",
+    "6aab9a7356f66d80f2b83dd4": "gotokuji",
+    "6aab9b0c53c5712b12477153": "kamakura",
+    "6aaba0980a0fff954508f310": "shiraito",
+    "6ab49087809989ec106f41a4": "fuji-lakes",
+    "6aab9b5a06c036742dbb193d": "ameyoko",
+    "6aafcdda38f99f2de39bfe3a": "suvarnabhumi"
+  },
+  "credits": {
+    "hero-fuji": {
+      "file": "hero-fuji.webp",
+      "title": "Lake Kawaguchiko and Mount Fuji at sunset during the Momijigari period.jpg",
+      "artist": "Moyan Brenn from Italy",
+      "license": "CC BY 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Lake_Kawaguchiko_and_Mount_Fuji_at_sunset_during_the_Momijigari_period.jpg"
+    },
+    "akihabara": {
+      "file": "akihabara.webp",
+      "title": "Akihabara Night.jpg",
+      "artist": "ElHeineken",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Akihabara_Night.jpg"
+    },
+    "gotokuji": {
+      "file": "gotokuji.webp",
+      "title": "2015-10-20 Maneki neko in Gotokuji 04.jpg",
+      "artist": "John Gillespie",
+      "license": "CC BY-SA 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:2015-10-20_Maneki_neko_in_Gotokuji_04.jpg"
+    },
+    "kamakura": {
+      "file": "kamakura.webp",
+      "title": "Kamakura Daibutsu 20170210.jpg",
+      "artist": "Suicasmo",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Kamakura_Daibutsu_20170210.jpg"
+    },
+    "fallback-fuji": {
+      "file": "fallback-fuji.webp",
+      "title": "Kawaguchiko, Part III - Kawaguchiko6782.jpg",
+      "artist": "lumoplank",
+      "license": "CC0",
+      "source": "https://commons.wikimedia.org/wiki/File:Kawaguchiko,_Part_III_-_Kawaguchiko6782.jpg"
+    },
+    "shiraito": {
+      "file": "shiraito.webp",
+      "title": "2013-12-02 Shiraito Falls, Fujinomiya(白糸の滝) DSCF9981.jpg",
+      "artist": "松岡明芳",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:2013-12-02_Shiraito_Falls,_Fujinomiya(%E7%99%BD%E7%B3%B8%E3%81%AE%E6%BB%9D)_DSCF9981.jpg"
+    },
+    "fuji-lakes": {
+      "file": "fuji-lakes.webp",
+      "title": "Kawaguchiko, Part II - Kawaguchiko6805.jpg",
+      "artist": "lumoplank",
+      "license": "CC0",
+      "source": "https://commons.wikimedia.org/wiki/File:Kawaguchiko,_Part_II_-_Kawaguchiko6805.jpg"
+    },
+    "ameyoko": {
+      "file": "ameyoko.webp",
+      "title": "Ameyoko Shopping Streets, Ueno (53416667926).jpg",
+      "artist": "Stephen Kelly from San Francisco, CA, USA",
+      "license": "CC BY 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Ameyoko_Shopping_Streets,_Ueno_(53416667926).jpg"
+    },
+    "suvarnabhumi": {
+      "file": "suvarnabhumi.webp",
+      "title": "Suvarnabhumi Airport Terminal E interior at dusk.jpg",
+      "artist": "Grendelkhan",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Suvarnabhumi_Airport_Terminal_E_interior_at_dusk.jpg"
+    }
+  }
+}

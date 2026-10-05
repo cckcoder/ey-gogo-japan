@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Torii">
+  <rect width="512" height="512" fill="#F6F3EC" />
+  <g fill="#C8102E">
+    <path d="M56 150 L256 104 L456 150 L456 176 L256 130 L56 176 Z" />
+    <rect x="96" y="150" width="320" height="22" rx="2" />
+    <rect x="116" y="232" width="280" height="24" rx="2" />
+    <rect x="140" y="160" width="40" height="256" rx="2" />
+    <rect x="332" y="160" width="40" height="256" rx="2" />
+  </g>
+</svg>
