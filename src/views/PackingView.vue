@@ -290,7 +290,7 @@ onBeforeUnmount(() => {
             >
               <span class="min-w-0 flex-1">
                 <span class="block text-[13px] font-semibold text-primary">{{ pick(item.layer, locale) }}</span>
-                <span class="block text-[15px] font-medium transition-colors group-hover:text-primary">{{ item.name }} ↗<span class="sr-only"> ({{ t('opensInNewTab') }})</span></span>
+                <span class="block text-[15px] font-medium transition-colors group-hover:text-primary">{{ item.name }} <span aria-hidden="true">↗</span><span class="sr-only"> ({{ t('opensInNewTab') }})</span></span>
                 <span class="block text-[13px] text-muted">{{ pick(item.why, locale) }}</span>
               </span>
               <span class="shrink-0 text-right tabular-nums">
