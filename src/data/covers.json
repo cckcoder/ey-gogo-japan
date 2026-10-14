@@ -3,11 +3,13 @@
   "fallback": "fallback-fuji",
   "cards": {
     "6aa12d481beb4e0c3d4a5d55": "akihabara",
-    "6aab9a7356f66d80f2b83dd4": "gotokuji",
-    "6aab9b0c53c5712b12477153": "kamakura",
     "6aaba0980a0fff954508f310": "shiraito",
     "6ab49087809989ec106f41a4": "fuji-lakes",
+    "6aab9bc49faeca12ae71dbdf": "skytree",
+    "6aab9a7356f66d80f2b83dd4": "gotokuji",
+    "6aab9b0c53c5712b12477153": "kamakura",
     "6aab9b5a06c036742dbb193d": "ameyoko",
+    "6aab9b715f80565d1125e1f5": "sensoji",
     "6aafcdda38f99f2de39bfe3a": "suvarnabhumi"
   },
   "credits": {
@@ -73,6 +75,20 @@
       "artist": "Grendelkhan",
       "license": "CC BY-SA 3.0",
       "source": "https://commons.wikimedia.org/wiki/File:Suvarnabhumi_Airport_Terminal_E_interior_at_dusk.jpg"
+    },
+    "skytree": {
+      "file": "skytree.webp",
+      "title": "Tokyo Skytree in winter.jpg",
+      "artist": "VaneTrz20",
+      "license": "CC0",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_Skytree_in_winter.jpg"
+    },
+    "sensoji": {
+      "file": "sensoji.webp",
+      "title": "Asakusa Sensoji Kaminarimon 2012.JPG",
+      "artist": "Kakidai",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Asakusa_Sensoji_Kaminarimon_2012.JPG"
     }
   }
 }
