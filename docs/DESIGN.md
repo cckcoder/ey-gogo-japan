@@ -38,7 +38,7 @@ Define as Tailwind v4 `@theme` colours, with dark overrides under `:root[data-th
 
 ## Screens
 
-Hash-based views (`#/` and `#/day/:index`) driven by a tiny composable on top of `hashchange`. No router library. Reload and the browser back button work offline. Keep the scroll position of Home when coming back.
+Hash-based views (`#/`, `#/day/:index`, `#/packing` and `#/immigration`) driven by a tiny composable on top of `hashchange`. No router library. Reload and the browser back button work offline. Keep the scroll position of Home when coming back.
 
 ### Home (`#/`)
 
@@ -66,6 +66,28 @@ Reached from a `primary-soft` panel on Home, after the Itinerary: a 56px `primar
 4. **Day by Day**: the `slot` pill (`Day 1`) beside each reminder.
 5. **Checklist**: three lists with an `n/total` count. Each row is a ≥ 44px `label` with a 20px rounded checkbox that fills `primary` with a CSS-drawn tick (no glyph). Ticks are stored per device under `gogo-packing-done`.
 6. **Decathlon kit**: hairline rows linking out (`↗`), layer eyebrow in `primary`, price right-aligned with any old price struck through, and a total. No product photos: they are the shop's, not licensed for the bundle.
+
+### Immigration Sheet (`#/immigration`)
+
+The one screen that is a document, not an app view. It has to read as an official one-page itinerary to a Japanese officer, on a phone held across a counter or printed on A4. So it uses the same type and hairlines but no photos, no pills and no accent fills. `primary` appears only on the page chrome. The sheet text is always English with Japanese beside it, whatever the language toggle says.
+
+Reached from Home: a second `primary-soft` panel below the Packing List panel, with a 56px `primary` square showing `JP`, the title `แผนเดินทางสำหรับตรวจคนเข้าเมือง` / `For immigration`, the teaser `ที่พัก เที่ยวบิน แผนรายวัน · อังกฤษ/ญี่ปุ่น` / `Stays, flights, Day plan · English/Japanese` and `→`.
+
+**Page chrome** (screen only, hidden in print): the round `surface` back button and the theme toggle, then a filled `primary` button `บันทึกเป็น PDF` / `Save as PDF`, full-width on the phone and inline at `md` and up. The button calls `window.print()`. Under it, one `muted` 13px line: `เลือก "บันทึกเป็น PDF" ในหน้าต่างพิมพ์` / `Choose "Save as PDF" in the print dialog`.
+
+**The sheet** is one `max-w-3xl` column, on screen a `bg` panel with a 1px `line` border and `rounded-[20px] p-5 md:p-8`, in this order:
+
+1. **Header**: `Travel Itinerary` at 24px semibold and `旅行日程表` under it in `muted`. Then a 3-column `dl` (it stacks on the phone): `Purpose 目的` → `Sightseeing 観光`; `Stay in Japan 滞在期間` → `24 Nov – 1 Dec 2026`; `Length of stay 滞在日数` → `8 days, 7 nights 7泊8日`. Both run from the arrival flight's date to the departure flight's date, not over the whole Trip (Day 8 is the landing in Bangkok). The nights must match the Stays.
+2. **Flights 航空便**: one row per flight: the direction (`Arrival 入国` / `Departure 出国`), the date and time in tabular numbers, the flight number when known, and from → to with the Japanese airport name under the English. A missing time or flight number is left out, never written as `null` or `TBC`.
+3. **Stays 宿泊先**: one block per Stay, separated by hairlines. Left column: `24–25 Nov` and `1 night 1泊` in tabular numbers. Right column: the English hotel name in semibold, the Japanese name, the Japanese address, the English address in `muted`, and the phone number as a `tel:` link.
+4. **Day by Day 日程**: a table with one row per Day of the Snapshot (all 9): the date (`Tue 24 Nov`), the English summary with the Japanese under it, and the Stay for that night in short form (`Asakusabashi` / `Kawaguchiko`, or `In flight 機内` for the night of Day 7 and `—` for Day 8). No `Day N` numbering: to an officer, dates are the reference.
+5. **Footer**: `Prepared 2026-10-14` (the file's `checkedAt`) in `muted` 12px.
+
+**Placeholders**: a flight or Stay may carry a `todo` (Thai text from Claude Code saying what is still missing). Show it directly under that row as a dashed 1px `muted` box (`rounded-xl px-3 py-2 text-[13px]`) starting with `ต้องเพิ่ม:`. Also show a placeholder in print, so a sheet with gaps can't pass for finished. When any `todo` exists, the page chrome adds one line above `Save as PDF`: `ยังขาดข้อมูล N รายการ` / `N item(s) still missing`. The placeholder box is the only dashed border in the app.
+
+Japanese text uses the system font (see Type). Keep Japanese and English on separate lines rather than with slashes, so each reads cleanly.
+
+**Print** (`@media print`): A4 portrait with `@page { size: A4; margin: 12mm }`. Print everything except the sheet as `display: none`. Force the light tokens whatever the theme, drop the panel border, radius and shadow, and set the sheet text to 9pt and put English and Japanese side by side where a line has room (flights, hotel names, addresses), so the whole sheet fits on one page. Keep rows from splitting across pages (`break-inside: avoid`). Links print as plain text. While printing, `document.title` becomes `EY-Japan-Itinerary-2026` so the saved PDF gets that file name; restore it on `afterprint`.
 
 ### Cover photos
 

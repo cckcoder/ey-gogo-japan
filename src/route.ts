@@ -1,17 +1,18 @@
 import { onUnmounted, ref, type Ref } from 'vue'
 import { snapshot } from './snapshot'
 
-export type Route = { name: 'home' } | { name: 'day'; index: number } | { name: 'packing' }
+export type Route = { name: 'home' } | { name: 'day'; index: number } | { name: 'packing' } | { name: 'immigration' }
 
 const DAY_HASH = /^#\/day\/(\d+)$/
 
 /**
  * Pure hash parser. `#/day/:index` is a Day route only when the index matches a
- * real Day in the Snapshot. `#/packing` is the Packing List. Anything else
+ * real Day in the Snapshot. `#/packing` is the Packing List and `#/immigration` the Immigration Sheet. Anything else
  * (empty, unknown, out of range) is Home.
  */
 export function parseRoute(hash: string): Route {
   if (hash === '#/packing') return { name: 'packing' }
+  if (hash === '#/immigration') return { name: 'immigration' }
 
   const match = DAY_HASH.exec(hash)
   if (!match) return { name: 'home' }

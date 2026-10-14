@@ -1,0 +1,140 @@
+{
+  "checkedAt": "2026-10-14",
+  "purpose": {
+    "en": "Sightseeing",
+    "ja": "観光"
+  },
+  "flights": [
+    {
+      "direction": "arrival",
+      "date": "2026-11-24",
+      "time": "15:05",
+      "flight": null,
+      "from": {
+        "en": "Bangkok (BKK)",
+        "ja": "バンコク"
+      },
+      "to": {
+        "en": "Narita International Airport, Terminal 1",
+        "ja": "成田国際空港 第1ターミナル"
+      },
+      "todo": "ใส่เลขไฟลต์ขาไป BKK → NRT (เช่น XJ600)"
+    },
+    {
+      "direction": "departure",
+      "date": "2026-12-01",
+      "time": null,
+      "flight": null,
+      "from": {
+        "en": "Haneda Airport, Terminal 2",
+        "ja": "羽田空港 第2ターミナル"
+      },
+      "to": {
+        "en": "Bangkok, arriving 2 Dec 06:30",
+        "ja": "バンコク（12月2日 6:30 着）"
+      },
+      "todo": "ใส่เลขไฟลต์ขากลับ HND → BKK และเวลาออกจากฮาเนดะ"
+    }
+  ],
+  "stays": [
+    {
+      "checkIn": "2026-11-24",
+      "checkOut": "2026-11-25",
+      "name": {
+        "en": "Hotel Route-Inn Grand Tokyo Asakusabashi",
+        "ja": "ホテルルートインGrand東京浅草橋"
+      },
+      "short": {
+        "en": "Asakusabashi",
+        "ja": "浅草橋"
+      },
+      "address": {
+        "en": "2-29-14 Asakusabashi, Taito-ku, Tokyo 111-0053",
+        "ja": "〒111-0053 東京都台東区浅草橋2-29-14"
+      },
+      "phone": "+81 50-5864-0363"
+    },
+    {
+      "checkIn": "2026-11-25",
+      "checkOut": "2026-11-27",
+      "name": {
+        "en": "Toyoko Inn Fuji Kawaguchiko Ohashi",
+        "ja": "東横INN富士河口湖大橋"
+      },
+      "short": {
+        "en": "Kawaguchiko",
+        "ja": "河口湖"
+      },
+      "address": {
+        "en": "294-1 Funatsu, Fujikawaguchiko-machi, Minamitsuru-gun, Yamanashi 401-0301",
+        "ja": "〒401-0301 山梨県南都留郡富士河口湖町船津294-1"
+      },
+      "phone": "+81 555-68-3045"
+    },
+    {
+      "checkIn": "2026-11-27",
+      "checkOut": "2026-12-01",
+      "name": {
+        "en": "Hotel Route-Inn Grand Tokyo Asakusabashi",
+        "ja": "ホテルルートインGrand東京浅草橋"
+      },
+      "short": {
+        "en": "Asakusabashi",
+        "ja": "浅草橋"
+      },
+      "address": {
+        "en": "2-29-14 Asakusabashi, Taito-ku, Tokyo 111-0053",
+        "ja": "〒111-0053 東京都台東区浅草橋2-29-14"
+      },
+      "phone": "+81 50-5864-0363",
+      "todo": "ยืนยันว่าคืน 27/11–1/12 พักที่นี่ (การ์ดจองบน Trello มีแค่คืน 24–25/11)"
+    }
+  ],
+  "days": [
+    {
+      "index": 0,
+      "en": "Arrive at Narita Airport · Asakusabashi, Akihabara",
+      "ja": "成田空港到着・浅草橋、秋葉原"
+    },
+    {
+      "index": 1,
+      "en": "Lake Kawaguchiko · Fujinomiya (Lake Tanuki, Shiraito Falls)",
+      "ja": "河口湖・富士宮（田貫湖、白糸の滝）"
+    },
+    {
+      "index": 2,
+      "en": "Fuji Five Lakes (Yamanakako, Kawaguchiko, Saiko, Shojiko, Motosuko)",
+      "ja": "富士五湖（山中湖、河口湖、西湖、精進湖、本栖湖）"
+    },
+    {
+      "index": 3,
+      "en": "Lake Kawaguchiko · Highway bus to Tokyo · Tokyo Skytree",
+      "ja": "河口湖・高速バスで東京へ・東京スカイツリー"
+    },
+    {
+      "index": 4,
+      "en": "Gotokuji Temple, Shinjuku, Meiji Jingu, Omotesando, Shibuya",
+      "ja": "豪徳寺、新宿、明治神宮、表参道、渋谷"
+    },
+    {
+      "index": 5,
+      "en": "Enoshima, Kamakura (Kotoku-in), Shinjuku",
+      "ja": "江の島、鎌倉（高徳院）、新宿"
+    },
+    {
+      "index": 6,
+      "en": "Akihabara, Kanda Myojin, Yanaka Ginza, Ueno",
+      "ja": "秋葉原、神田明神、谷中銀座、上野"
+    },
+    {
+      "index": 7,
+      "en": "Asakusa (Senso-ji) · Depart from Haneda Airport",
+      "ja": "浅草（浅草寺）・羽田空港より出国"
+    },
+    {
+      "index": 8,
+      "en": "Arrive in Bangkok",
+      "ja": "バンコク到着"
+    }
+  ]
+}

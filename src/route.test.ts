@@ -22,6 +22,10 @@ describe('parseRoute', () => {
     expect(parseRoute('#/packing')).toEqual({ name: 'packing' })
   })
 
+  it('parses the Immigration Sheet hash', () => {
+    expect(parseRoute('#/immigration')).toEqual({ name: 'immigration' })
+  })
+
   it('parses an empty hash as home', () => {
     expect(parseRoute('')).toEqual({ name: 'home' })
   })

@@ -235,3 +235,23 @@
     animation: none;
   }
 }
+
+/* Print: only the Immigration Sheet is meant for paper. A4, black on white
+   whatever the theme (DESIGN.md, Immigration Sheet). */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
+    --color-ink: #000000;
+    --color-muted: #4a4f59;
+    --color-line: #c4c8cf;
+    --color-primary: #000000;
+  }
+}

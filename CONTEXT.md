@@ -45,5 +45,13 @@ Email addresses, payment amounts and reservation numbers. They belong only on un
 _Avoid_: Private data, secrets
 
 **Immigration Officer**:
-The officer at Narita arrival who may ask where the travellers will go and stay. They view the same page as the travellers.
+The officer at Narita arrival who may ask where the travellers will go and stay. They are shown the Immigration Sheet, on the phone or as a PDF.
 _Avoid_: ต.ม., customs
+
+**Immigration Sheet**:
+One A4 page in English and Japanese for the Immigration Officer: the purpose of the visit, the flights in and out, every Stay and a one-line plan per Day. It never names the travellers. Claude Code writes its data (`src/data/immigration.json`); it is not part of the Snapshot.
+_Avoid_: PDF export, TM form
+
+**Stay**:
+The public part of a hotel booking: hotel name, address, phone, check-in and check-out dates. The reservation number and payment stay on the unpublished Plan Card.
+_Avoid_: Booking, accommodation (in code)

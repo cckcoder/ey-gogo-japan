@@ -150,6 +150,32 @@ Rebuild the UI to `docs/DESIGN.md` v3, which supersedes v1/v2 visuals. Reuse the
 
 ---
 
+## Task 6f: Immigration Sheet (done by Claude Code)
+
+Build `#/immigration` to the **Immigration Sheet** section of `docs/DESIGN.md`. The data is in `src/data/immigration.json` (read-only input, see `AGENTS.md` and ADR 0002).
+
+- [x] `src/immigration.ts`: types for the file, the sheet's fixed English + Japanese labels, and pure helpers: `nights(stay)`, `totalNights(stays)`, `stayForNight(stays, date)` (the Stay whose `checkIn ≤ date < checkOut`, else `null`) and `formatSheetDate` (`Tue 24 Nov`, always English).
+- [x] `parseRoute('#/immigration')` → `{ name: 'immigration' }`.
+- [x] `ImmigrationView.vue`: page chrome plus the sheet's five sections. Days come from the Snapshot (dates and order) joined with `immigration.json` by `index`. Leave out a flight's `time` or `flight` when it is `null`. Render every `todo` as the dashed placeholder, plus the `N item(s) still missing` count in the chrome.
+- [x] Print CSS and the `document.title` swap on `beforeprint`/`afterprint`.
+- [x] Home entry panel below the Packing List panel. New strings go in `i18n.ts`, in both languages.
+
+**Done when:**
+- New Vitest cases pass, and `npm test` is green:
+  - `immigration.json` has one `days` entry for each Day of the Snapshot, with the same indexes.
+  - The Stays don't overlap, and `totalNights` is 7. The stay in Japan is 8 days, 7 nights (`7泊8日`), from the arrival flight to the departure flight.
+  - The view shows one placeholder per `todo` (3 in the current file) and the matching count.
+  - `stayForNight` returns Toyoko Inn for `2026-11-26`, Route-Inn for `2026-11-27`, and `null` for `2026-12-01`.
+  - Neither `immigration.json` nor the rendered sheet contains an email address, `¥`, `円` amounts or a reservation-number pattern (`/\d{8,}/`).
+- `npm run build` exits 0.
+- Chrome at 390×844 (light and dark) and 1440×900 shows the sheet with no horizontal scroll, and Japanese renders (no tofu boxes).
+- Print preview (Chrome DevTools → Rendering → emulate `print`, or `page.pdf({ format: 'A4' })` in Playwright) is a single A4 page, black on white, with no chrome. Save `docs/screenshots/v9-immigration-phone.png` and `docs/immigration-sample.pdf`.
+- Offline after a reload, `#/immigration` still renders and `Save as PDF` opens the print dialog.
+
+**Verified:** `npm test` 57/57, `npm run build`, no horizontal scroll at 390 (light, dark) and 1440 (dark), and Japanese renders with Japanese glyphs (`lang="ja"`). Headless Chrome `--print-to-pdf` gives one A4 page (`docs/immigration-sample.pdf`). With the preview server stopped, a reload still renders the sheet (9 rows, 3 placeholders, fonts) and Home's 21/21 photos. On phones the Stay column folds under the plan. Not clicked: `Save as PDF` (it opens the system print dialog), and printing from dark mode (the print CSS forces the light tokens).
+
+---
+
 ## Task 7 👤: Deploy
 
 - [ ] Mirror the GitLab repo to a **private** GitHub repo.
@@ -163,5 +189,5 @@ Rebuild the UI to `docs/DESIGN.md` v3, which supersedes v1/v2 visuals. Reuse the
 ## Updating the Trip later
 
 1. Edit in Trello. Add the `Gogo` label to anything that should appear, and keep Sensitive Details on unlabelled cards.
-2. Ask Claude Code to refresh the Snapshot. It rewrites `src/data/snapshot.json`.
+2. Ask Claude Code to refresh the Snapshot. It rewrites `src/data/snapshot.json`, and `src/data/immigration.json` too if a booking or a Day's plan changed.
 3. Commit, push and let Cloudflare deploy. Open the app on each phone while online and check the `ข้อมูล ณ` date.

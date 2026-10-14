@@ -108,6 +108,22 @@ onBeforeUnmount(() => {
         </a>
       </section>
 
+      <section class="mt-3 px-5 md:px-8 lg:px-0" aria-labelledby="immigration-heading">
+        <a
+          href="#/immigration"
+          class="group flex items-center gap-4 rounded-[20px] bg-primary-soft p-5 transition-transform active:scale-[0.98] motion-reduce:transition-none"
+        >
+          <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary text-lg font-semibold text-on-primary" aria-hidden="true">
+            JP
+          </span>
+          <span class="min-w-0 flex-1">
+            <span id="immigration-heading" class="block text-[17px] font-semibold text-ink group-hover:text-primary">{{ t('immigrationTitle') }}</span>
+            <span class="mt-0.5 block text-[13px] text-muted">{{ t('immigrationTeaser') }}</span>
+          </span>
+          <span class="text-primary" aria-hidden="true">→</span>
+        </a>
+      </section>
+
       <PhotoCredits :generated-at="generatedAt" />
     </div>
   </div>
