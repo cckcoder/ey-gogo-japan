@@ -90,12 +90,21 @@ export function stayForNight(stays: Stay[], date: string): Stay | null {
   return stays.find((stay) => stay.checkIn <= date && date < stay.checkOut) ?? null
 }
 
+/**
+ * The last calendar day spent in Japan. A flight that leaves after midnight (01:25 on 2 Dec)
+ * belongs to the night before, so the traveller's last day is 1 Dec.
+ */
+export function lastDayInJapan(flight: Pick<Flight, 'date' | 'time'>): string {
+  if (!flight.time || flight.time >= '06:00') return flight.date
+  return new Date(utc(flight.date) - DAY_MS).toISOString().slice(0, 10)
+}
+
 /** Where the travellers sleep on the night of `date`, for the Day by Day table. */
 export function nightLabel(data: ImmigrationData, date: string): Bilingual | null {
   const stay = stayForNight(data.stays, date)
   if (stay) return stay.short
   const departure = data.flights.find((flight) => flight.direction === 'departure')
-  return departure?.date === date ? labels.inFlight : null
+  return departure && lastDayInJapan(departure) === date ? labels.inFlight : null
 }
 
 const dayMonth = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', day: 'numeric', month: 'short' })
@@ -122,7 +131,7 @@ export function stayLength(data: ImmigrationData): { days: number; nights: numbe
   const arrival = data.flights.find((flight) => flight.direction === 'arrival')
   const departure = data.flights.find((flight) => flight.direction === 'departure')
   if (!arrival || !departure) return { days: 0, nights: 0 }
-  const nights = Math.round((utc(departure.date) - utc(arrival.date)) / DAY_MS)
+  const nights = Math.round((utc(lastDayInJapan(departure)) - utc(arrival.date)) / DAY_MS)
   return { days: nights + 1, nights }
 }
 

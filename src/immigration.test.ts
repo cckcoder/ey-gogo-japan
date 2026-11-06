@@ -6,6 +6,7 @@ import {
   formatSheetDate,
   immigration,
   labels,
+  lastDayInJapan,
   lengthLabel,
   nightLabel,
   SENSITIVE,
@@ -33,7 +34,7 @@ describe('immigration.json', () => {
   })
 
   it('lists one placeholder per todo', () => {
-    expect(todos(immigration)).toHaveLength(3)
+    expect(todos(immigration)).toHaveLength(2)
   })
 })
 
@@ -53,6 +54,14 @@ describe('stayLength', () => {
     expect(length).toEqual({ days: 8, nights: 7 })
     expect(length.nights).toBe(totalNights(immigration.stays))
     expect(lengthLabel(length)).toEqual({ en: '8 days, 7 nights', ja: '7泊8日' })
+  })
+})
+
+describe('lastDayInJapan', () => {
+  it('counts a flight after midnight as leaving on the day before', () => {
+    expect(lastDayInJapan({ date: '2026-12-02', time: '01:25' })).toBe('2026-12-01')
+    expect(lastDayInJapan({ date: '2026-12-01', time: '18:30' })).toBe('2026-12-01')
+    expect(lastDayInJapan({ date: '2026-12-01', time: null })).toBe('2026-12-01')
   })
 })
 

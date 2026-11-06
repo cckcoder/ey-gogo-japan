@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-14",
+  "checkedAt": "2026-11-06",
   "purpose": {
     "en": "Sightseeing",
     "ja": "観光"
@@ -22,8 +22,8 @@
     },
     {
       "direction": "departure",
-      "date": "2026-12-01",
-      "time": null,
+      "date": "2026-12-02",
+      "time": "01:25",
       "flight": null,
       "from": {
         "en": "Haneda Airport, Terminal 2",
@@ -33,7 +33,7 @@
         "en": "Bangkok, arriving 2 Dec 06:30",
         "ja": "バンコク（12月2日 6:30 着）"
       },
-      "todo": "ใส่เลขไฟลต์ขากลับ HND → BKK และเวลาออกจากฮาเนดะ"
+      "todo": "ใส่เลขไฟลต์ขากลับ HND → BKK"
     }
   ],
   "stays": [
@@ -86,8 +86,7 @@
         "en": "2-29-14 Asakusabashi, Taito-ku, Tokyo 111-0053",
         "ja": "〒111-0053 東京都台東区浅草橋2-29-14"
       },
-      "phone": "+81 50-5864-0363",
-      "todo": "ยืนยันว่าคืน 27/11–1/12 พักที่นี่ (การ์ดจองบน Trello มีแค่คืน 24–25/11)"
+      "phone": "+81 50-5864-0363"
     }
   ],
   "days": [
