@@ -383,6 +383,19 @@ export const checklists: Checklist[] = [
   },
 ]
 
+// Taken from the MSIG Travel Insurance card on the Plan Board (ADR 0002: the travellers
+// agreed to show the numbers in the app, by first name; the Immigration Sheet stays nameless).
+export const insurance = {
+  assistPhone: '+66 2 039 5704',
+  assistTel: 'tel:+6620395704',
+  policyNo: 'GTU2026090077012',
+  claimUrl: 'https://www.msig-thai.com/th/claims/personal-insurance/travel',
+  certificates: [
+    { name: 'Chaiwat', no: '43251857-1-1' },
+    { name: 'Nipaporn', no: '43251857-2-1' },
+  ],
+}
+
 export interface KitItem {
   name: string
   layer: Text

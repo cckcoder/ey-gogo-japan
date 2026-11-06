@@ -7,6 +7,7 @@ import { locale, t } from '../i18n'
 import {
   checklists,
   dayTips,
+  insurance,
   kit,
   KIT_PRICES_CHECKED,
   kitTotal,
@@ -272,6 +273,41 @@ onBeforeUnmount(() => {
             </ul>
           </div>
         </div>
+      </section>
+
+      <!-- Travel insurance -->
+      <section class="mt-10" aria-labelledby="insurance-heading">
+        <h2 id="insurance-heading" class="text-[17px] font-semibold md:text-xl">{{ t('insurance') }}</h2>
+        <p class="mt-1 text-[13px] text-muted">{{ t('insuranceNote') }}</p>
+        <a
+          :href="insurance.assistTel"
+          class="mt-4 flex items-center justify-between gap-3 rounded-full bg-primary px-5 py-3.5 text-[15px] font-semibold text-on-primary shadow-[0_10px_30px_-12px_rgb(16_24_40/0.18)] dark:shadow-none dark:ring-1 dark:ring-line"
+        >
+          <span>
+            {{ t('callAssist') }}
+            <span class="block text-[12px] font-normal">{{ t('assistHours') }} · {{ insurance.assistPhone }}</span>
+          </span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <dl class="mt-3.5 rounded-[20px] bg-surface px-4">
+          <div class="border-b border-line py-3.5">
+            <dt class="text-[13px] text-muted">{{ t('policyNo') }}</dt>
+            <dd class="mt-0.5 text-[17px] font-semibold tabular-nums">{{ insurance.policyNo }}</dd>
+          </div>
+          <div v-for="cert in insurance.certificates" :key="cert.no" class="border-b border-line py-3.5 last:border-b-0">
+            <dt class="text-[13px] text-muted">
+              {{ cert.name }}
+              <span class="ml-2 rounded-full bg-primary-soft px-2.5 py-0.5 text-[12px] font-medium text-primary">{{ t('certificate') }}</span>
+            </dt>
+            <dd class="mt-0.5 text-[17px] font-semibold tabular-nums">{{ cert.no }}</dd>
+          </div>
+        </dl>
+        <a
+          :href="insurance.claimUrl"
+          target="_blank"
+          rel="noopener"
+          class="mt-3.5 inline-block rounded-full border border-primary px-[18px] py-2.5 text-[15px] font-medium text-primary"
+        >{{ t('howToClaim') }} <span aria-hidden="true">↗</span><span class="sr-only"> ({{ t('opensInNewTab') }})</span></a>
       </section>
 
       <!-- Decathlon kit -->
