@@ -2,15 +2,11 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
 import ThemeToggle from '../components/ThemeToggle.vue'
-import { formatDayDate } from '../format'
 import { locale, t } from '../i18n'
 import {
   checklists,
   dayTips,
   insurance,
-  kit,
-  KIT_PRICES_CHECKED,
-  kitTotal,
   layers,
   packingTotals,
   pick,
@@ -24,7 +20,6 @@ import {
 } from '../packing'
 
 const totals = packingTotals(quantities)
-const kitSum = kitTotal(kit)
 const checked = ref(readChecked())
 
 const allChecklistIds = checklists.flatMap((list) => list.items.map((item) => item.id))
@@ -46,9 +41,6 @@ function count(value: number, unit: Unit): string {
   return unit === 'pair' ? `${value} ${t('pairs')}` : String(value)
 }
 
-function baht(value: number): string {
-  return `฿${value.toLocaleString('en-US')}`
-}
 
 function toggle(id: string): void {
   const next = new Set(checked.value)
@@ -308,38 +300,6 @@ onBeforeUnmount(() => {
           rel="noopener"
           class="mt-3.5 inline-block rounded-full border border-primary px-[18px] py-2.5 text-[15px] font-medium text-primary"
         >{{ t('howToClaim') }} <span aria-hidden="true">↗</span><span class="sr-only"> ({{ t('opensInNewTab') }})</span></a>
-      </section>
-
-      <!-- Decathlon kit -->
-      <section class="mt-10" aria-labelledby="kit-heading">
-        <h2 id="kit-heading" class="text-[17px] font-semibold md:text-xl">{{ t('kit') }}</h2>
-        <p class="mt-1 text-[13px] text-muted">
-          {{ t('kitNote') }} {{ formatDayDate(KIT_PRICES_CHECKED, locale) }}. {{ t('kitNoteEnd') }}
-        </p>
-        <ul class="mt-3 border-t border-line">
-          <li v-for="item in kit" :key="item.url">
-            <a
-              :href="item.url"
-              target="_blank"
-              rel="noopener"
-              class="group flex min-h-16 items-center gap-4 border-b border-line py-3"
-            >
-              <span class="min-w-0 flex-1">
-                <span class="block text-[13px] font-semibold text-primary">{{ pick(item.layer, locale) }}</span>
-                <span class="block text-[15px] font-medium transition-colors group-hover:text-primary">{{ item.name }} <span aria-hidden="true">↗</span><span class="sr-only"> ({{ t('opensInNewTab') }})</span></span>
-                <span class="block text-[13px] text-muted">{{ pick(item.why, locale) }}</span>
-              </span>
-              <span class="shrink-0 text-right tabular-nums">
-                <span class="block font-semibold">{{ baht(item.price) }}</span>
-                <s v-if="item.oldPrice" class="block text-[12px] text-muted">{{ baht(item.oldPrice) }}</s>
-              </span>
-            </a>
-          </li>
-        </ul>
-        <p class="mt-3 flex items-baseline justify-between gap-3 rounded-[20px] bg-primary-soft px-4 py-3 text-[15px]">
-          <span class="font-semibold">{{ t('kitTotal') }} · {{ kit.length }} {{ t('pieces') }}</span>
-          <span class="text-xl font-semibold text-primary tabular-nums">{{ baht(kitSum) }}</span>
-        </p>
       </section>
     </div>
   </div>

@@ -65,7 +65,7 @@ Reached from a `primary-soft` panel on Home, after the Itinerary: a 56px `primar
 3. **How many**: two stat tiles (wash once in `primary-soft`, no wash in `surface`), then a table that fits the phone width (no min width): item and note on the left, two right-aligned tabular count columns, group rows on `surface` in `primary`.
 4. **Day by Day**: the `slot` pill (`Day 1`) beside each reminder.
 5. **Checklist**: three lists with an `n/total` count. Each row is a ≥ 44px `label` with a 20px rounded checkbox that fills `primary` with a CSS-drawn tick (no glyph). Ticks are stored per device under `gogo-packing-done`.
-6. **Decathlon kit**: hairline rows linking out (`↗`), layer eyebrow in `primary`, price right-aligned with any old price struck through, and a total. No product photos: they are the shop's, not licensed for the bundle.
+6. **Travel insurance**: a filled `primary` pill that calls MSIG Assist (`tel:`, with the 24-hour number under the label), a `surface` `dl` (`rounded-[20px]`) with the policy number and each traveller's certificate (first name plus a `primary-soft` `Certificate` chip), then an outlined `How to claim ↗` pill. The numbers never appear on the Immigration Sheet.
 
 ### Immigration Sheet (`#/immigration`)
 
