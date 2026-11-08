@@ -2,7 +2,7 @@ import immigrationData from './data/immigration.json'
 import { formatDayShort } from './format'
 
 /**
- * The Immigration Sheet: one A4 page in English and Japanese for the officer at
+ * The Immigration Sheet: an A4 itinerary in English and Japanese for the officer at
  * Narita (ADR 0002). Claude Code writes the data in `data/immigration.json`; the
  * sheet's labels are fixed English + Japanese here, whatever the language toggle
  * says, so they stay out of `i18n.ts`.
@@ -105,6 +105,18 @@ export function nightLabel(data: ImmigrationData, date: string): Bilingual | nul
   if (stay) return stay.short
   const departure = data.flights.find((flight) => flight.direction === 'departure')
   return departure && lastDayInJapan(departure) === date ? labels.inFlight : null
+}
+
+/**
+ * A Day summary split into its steps (`A → B → C`), English paired with Japanese. When the
+ * two languages have a different number of steps they can't be paired, so the Day stays one step.
+ */
+export function planSteps(summary: DaySummary): Bilingual[] {
+  const split = (text: string) => text.split('→').map((step) => step.trim())
+  const en = split(summary.en)
+  const ja = split(summary.ja)
+  if (en.length !== ja.length) return [{ en: summary.en, ja: summary.ja }]
+  return en.map((step, index) => ({ en: step, ja: ja[index]! }))
 }
 
 const dayMonth = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', day: 'numeric', month: 'short' })

@@ -9,6 +9,7 @@ import {
   lastDayInJapan,
   lengthLabel,
   nightLabel,
+  planSteps,
   SENSITIVE,
   stayForNight,
   stayLength,
@@ -33,8 +34,28 @@ describe('immigration.json', () => {
     expect(JSON.stringify(labels)).not.toMatch(SENSITIVE)
   })
 
-  it('lists one placeholder per todo', () => {
-    expect(todos(immigration)).toHaveLength(2)
+  it('has no placeholder left once every flight and Stay is filled in', () => {
+    expect(todos(immigration)).toHaveLength(0)
+  })
+
+  it('has the same number of steps in English and Japanese on every Day', () => {
+    immigration.days.forEach((day) => {
+      expect(day.ja.split('→')).toHaveLength(day.en.split('→').length)
+    })
+  })
+})
+
+describe('planSteps', () => {
+  it('pairs each English step with its Japanese step', () => {
+    expect(planSteps({ index: 0, en: 'Narita → Hotel', ja: '成田 → ホテル' })).toEqual([
+      { en: 'Narita', ja: '成田' },
+      { en: 'Hotel', ja: 'ホテル' },
+    ])
+  })
+
+  it('keeps the Day as one step when the step counts differ', () => {
+    const day = { index: 0, en: 'Narita → Hotel', ja: '成田' }
+    expect(planSteps(day)).toEqual([{ en: day.en, ja: day.ja }])
   })
 })
 
