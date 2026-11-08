@@ -9,9 +9,11 @@ import {
   formatSheetDate,
   immigration,
   labels,
+  lastDayInJapan,
   nightLabel,
   nights,
   nightsLabel,
+  planSteps,
   stayLength,
   todos,
 } from '../immigration'
@@ -22,19 +24,22 @@ const PDF_TITLE = 'EY-Japan-Itinerary-2026'
 // The time in Japan runs from the arrival flight to the departure flight, not the
 // whole Trip (Day 8 is the landing in Bangkok).
 const arrivalDate = immigration.flights.find((flight) => flight.direction === 'arrival')!.date
-const departureDate = immigration.flights.find((flight) => flight.direction === 'departure')!.date
-const period = formatPeriod(arrivalDate, departureDate)
+const departure = immigration.flights.find((flight) => flight.direction === 'departure')!
+const period = formatPeriod(arrivalDate, lastDayInJapan(departure))
 const length = lengthLabel(stayLength(immigration))
 const missing = todos(immigration).length
 
 const missingLine = computed(() => [t('missingBefore'), missing, t('missingAfter')].filter((part) => part !== '').join(' '))
 
 // Days come from the Snapshot (dates, order), joined with the sheet's summaries by index.
-const rows = snapshot.days.map((day) => ({
-  date: day.date,
-  summary: immigration.days.find((summary) => summary.index === day.index),
-  night: nightLabel(immigration, day.date),
-}))
+const rows = snapshot.days.map((day) => {
+  const summary = immigration.days.find((candidate) => candidate.index === day.index)
+  return {
+    date: day.date,
+    steps: summary ? planSteps(summary) : [],
+    night: nightLabel(immigration, day.date),
+  }
+})
 
 function telHref(phone: string): string {
   return `tel:${phone.replace(/[^\d+]/g, '')}`
@@ -190,7 +195,7 @@ onBeforeUnmount(() => {
           <h2 id="days-heading" class="text-[1.133em] font-semibold print:break-after-avoid">
             {{ labels.dayByDay.en }} <span lang="ja" class="font-normal text-muted">{{ labels.dayByDay.ja }}</span>
           </h2>
-          <table class="mt-2 w-full border-collapse text-left">
+          <table class="mt-2 w-full border-collapse text-left print:text-[0.92em]">
             <thead class="text-[0.867em] text-muted">
               <tr>
                 <th scope="col" class="py-2 pr-3 font-normal">{{ labels.date.en }} <span lang="ja">{{ labels.date.ja }}</span></th>
@@ -202,8 +207,15 @@ onBeforeUnmount(() => {
               <tr v-for="row in rows" :key="row.date" class="border-t border-line align-top break-inside-avoid">
                 <th scope="row" class="whitespace-nowrap py-2 pr-3 print:py-0.5 font-medium tabular-nums">{{ formatSheetDate(row.date) }}</th>
                 <td class="py-2 pr-3 print:py-0.5">
-                  <span class="block">{{ row.summary?.en }}</span>
-                  <span class="block text-[0.867em] text-muted" lang="ja">{{ row.summary?.ja }}</span>
+                  <!-- One step per line on a hairline timeline, Japanese under each step. -->
+                  <ol>
+                    <li v-for="(step, index) in row.steps" :key="index" class="relative pb-2.5 pl-5 last:pb-0 print:pb-1 print:last:pb-0">
+                      <span aria-hidden="true" class="absolute left-[3px] top-[0.55em] size-[7px] rounded-full border-[1.5px] border-ink bg-bg"></span>
+                      <span v-if="index < row.steps.length - 1" aria-hidden="true" class="absolute -bottom-[0.55em] left-[6px] top-[calc(0.55em+9px)] border-l border-muted/40"></span>
+                      <span class="block">{{ step.en }}</span>
+                      <span class="block text-[0.867em] text-muted" lang="ja">{{ step.ja }}</span>
+                    </li>
+                  </ol>
                   <!-- Phone: the Stay sits under the plan, as the third column won't fit. -->
                   <span v-if="row.night" class="mt-1 block text-[0.867em] sm:hidden print:hidden">
                     {{ labels.stay.en }}: {{ row.night.en }} <span class="text-muted" lang="ja">{{ row.night.ja }}</span>
@@ -211,8 +223,8 @@ onBeforeUnmount(() => {
                 </td>
                 <td class="hidden py-2 print:whitespace-nowrap print:py-0.5 sm:table-cell print:table-cell">
                   <template v-if="row.night">
-                    <span class="block print:inline">{{ row.night.en }}</span>
-                    <span class="block text-[0.867em] text-muted print:ml-1.5 print:inline" lang="ja">{{ row.night.ja }}</span>
+                    <span class="block">{{ row.night.en }}</span>
+                    <span class="block text-[0.867em] text-muted" lang="ja">{{ row.night.ja }}</span>
                   </template>
                   <span v-else class="text-muted">—</span>
                 </td>

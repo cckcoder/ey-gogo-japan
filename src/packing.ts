@@ -383,84 +383,17 @@ export const checklists: Checklist[] = [
   },
 ]
 
-export interface KitItem {
-  name: string
-  layer: Text
-  price: number
-  /** Price before a sale, when there is one. */
-  oldPrice?: number
-  url: string
-  why: Text
-}
-
-/** The date the Decathlon prices were read. */
-export const KIT_PRICES_CHECKED = '2026-10-05'
-
-/** A men's cold-weather kit from decathlon.co.th that covers this Trip. */
-export const kit: KitItem[] = [
-  {
-    name: "Men's Hooded Down Jacket -5°C MH100",
-    layer: { th: 'ชั้นนอก', en: 'Outer' },
-    price: 1080,
-    oldPrice: 1950,
-    url: 'https://www.decathlon.co.th/en-TH/p/men-s-hiking-hooded-down-jacket-5-c-mh100-blue-simond-8858286.html',
-    why: { th: 'อุ่นถึง -5 °C พับเก็บได้เล็ก', en: 'Warm to -5 °C and packs small' },
-  },
-  {
-    name: "Men's Raincut 1/2 Zip Jacket",
-    layer: { th: 'ชั้นนอก', en: 'Outer' },
-    price: 350,
-    url: 'https://www.decathlon.co.th/en-TH/p/men-s-windproof-and-waterproof-hiking-jacket-raincut-1-2-zip-black-quechua-8862313.html',
-    why: { th: 'กันลมกันฝน ใส่ทับฟลีซ', en: 'Wind and rain shell over the fleece' },
-  },
-  {
-    name: "Men's Hiking Fleece MH100 Full Zip",
-    layer: { th: 'ชั้นกลาง', en: 'Mid' },
-    price: 500,
-    url: 'https://www.decathlon.co.th/en-TH/p/men-s-mountain-hiking-fleece-mh100-full-zip-blue-quechua-8647631.html',
-    why: { th: 'ใส่ได้ทุกวัน', en: 'For every day' },
-  },
-  {
-    name: "Men's Thermal Base Layer Bottoms BL 100",
-    layer: { th: 'ชั้นใน', en: 'Base' },
-    price: 220,
-    url: 'https://www.decathlon.co.th/en-TH/p/men-s-skiing-thermal-base-layer-bottoms-bl-100-black-wedze-8510030.html',
-    why: { th: 'ใส่ใต้กางเกง Day 1–3', en: 'Under trousers on Day 1–3' },
-  },
-  {
-    name: "Men's Hiking Trousers NH500 Regular",
-    layer: { th: 'กางเกง', en: 'Trousers' },
-    price: 700,
-    url: 'https://www.decathlon.co.th/en-TH/p/men-s-hiking-trousers-nh500-regular-grey-quechua-968697.html',
-    why: { th: 'ยืด แห้งเร็ว ใส่ในเมืองได้', en: 'Stretchy, quick-drying, fine in town' },
-  },
-  {
-    name: 'Trekking Fleece Gloves MT500',
-    layer: { th: 'ของเล็ก', en: 'Small things' },
-    price: 350,
-    url: 'https://www.decathlon.co.th/en-TH/p/adult-mountain-trekking-fleece-gloves-mt500-black-quechua-8738791.html',
-    why: { th: 'ใช้จอมือถือได้', en: 'Touchscreen-friendly' },
-  },
-  {
-    name: 'Adult Warm Beanie',
-    layer: { th: 'ของเล็ก', en: 'Small things' },
-    price: 300,
-    oldPrice: 340,
-    url: 'https://www.decathlon.co.th/en-TH/p/adult-beanie-purple-modern-style-warm-hat-quechua-8991474.html',
-    why: { th: 'ช่วยมากตอนลมเย็นที่ทะเลสาบ', en: 'Helps a lot in the lake wind' },
-  },
-  {
-    name: 'Warm High Hiking Socks SH100 (2 pairs)',
-    layer: { th: 'ของเล็ก', en: 'Small things' },
-    price: 400,
-    oldPrice: 420,
-    url: 'https://www.decathlon.co.th/en-TH/p/adults-warm-high-hiking-socks-2-pairs-sh100-black-quechua-8738841.html',
-    why: { th: 'ผสมขนสัตว์ อุ่นเท้า', en: 'Wool blend, warm feet' },
-  },
-]
-
-export function kitTotal(items: KitItem[]): number {
-  return items.reduce((sum, item) => sum + item.price, 0)
+// Taken from the MSIG Travel Insurance card on the Plan Board (ADR 0002: the travellers
+// agreed to show the numbers in the app, by first name; the Immigration Sheet stays nameless).
+export const insurance = {
+  assistPhone: '+66 2 039 5704',
+  assistTel: 'tel:+6620395704',
+  policyNo: 'GTU2026090077012',
+  claimUrl: 'https://www.msig-thai.com/th/claims/personal-insurance/travel',
+  certificates: [
+    { name: 'Chaiwat', no: '43251857-1-1' },
+    { name: 'Nipaporn', no: '43251857-2-1' },
+  ],
 }
 
 const STORAGE_KEY = 'gogo-packing-done'

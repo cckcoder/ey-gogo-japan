@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checklists, kit, kitTotal, packingTotals, quantities, weather, WEATHER_SCALE } from './packing'
+import { checklists, packingTotals, quantities, weather, WEATHER_SCALE } from './packing'
 
 describe('packingTotals', () => {
   it('adds up every item in both scenarios', () => {
@@ -10,12 +10,6 @@ describe('packingTotals', () => {
     for (const item of quantities.flatMap((group) => group.items)) {
       expect(item.noWash).toBeGreaterThanOrEqual(item.wash)
     }
-  })
-})
-
-describe('kitTotal', () => {
-  it('sums the current prices', () => {
-    expect(kitTotal(kit)).toBe(3900)
   })
 })
 

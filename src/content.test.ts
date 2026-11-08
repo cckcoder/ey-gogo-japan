@@ -11,7 +11,7 @@ describe('cardContent', () => {
 
   it('uses the English translation while it matches the Thai text', () => {
     const english = cardContent(kamakura, 'en')
-    expect(english.title).toBe('Kamakura, Enoshima')
+    expect(english.title).toBe('Enoshima, Kamakura')
     expect(english.markdown).toContain('Walk 25 minutes (1.6 km) to Enoshima Island')
     expect(english.markdown).not.toMatch(/[฀-๿]/)
   })

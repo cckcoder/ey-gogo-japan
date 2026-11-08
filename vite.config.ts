@@ -13,7 +13,6 @@ export default defineConfig({
       includeAssets: [
         'favicon.ico',
         'apple-touch-icon-180x180.png',
-        'icon.svg',
       ],
       manifest: {
         name: 'EY Gogo Japan',

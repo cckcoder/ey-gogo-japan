@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-14",
+  "checkedAt": "2026-11-08",
   "purpose": {
     "en": "Sightseeing",
     "ja": "観光"
@@ -9,7 +9,7 @@
       "direction": "arrival",
       "date": "2026-11-24",
       "time": "15:05",
-      "flight": null,
+      "flight": "NH806",
       "from": {
         "en": "Bangkok (BKK)",
         "ja": "バンコク"
@@ -17,14 +17,13 @@
       "to": {
         "en": "Narita International Airport, Terminal 1",
         "ja": "成田国際空港 第1ターミナル"
-      },
-      "todo": "ใส่เลขไฟลต์ขาไป BKK → NRT (เช่น XJ600)"
+      }
     },
     {
       "direction": "departure",
-      "date": "2026-12-01",
-      "time": null,
-      "flight": null,
+      "date": "2026-12-02",
+      "time": "01:25",
+      "flight": "NH877",
       "from": {
         "en": "Haneda Airport, Terminal 2",
         "ja": "羽田空港 第2ターミナル"
@@ -32,8 +31,7 @@
       "to": {
         "en": "Bangkok, arriving 2 Dec 06:30",
         "ja": "バンコク（12月2日 6:30 着）"
-      },
-      "todo": "ใส่เลขไฟลต์ขากลับ HND → BKK และเวลาออกจากฮาเนดะ"
+      }
     }
   ],
   "stays": [
@@ -86,55 +84,54 @@
         "en": "2-29-14 Asakusabashi, Taito-ku, Tokyo 111-0053",
         "ja": "〒111-0053 東京都台東区浅草橋2-29-14"
       },
-      "phone": "+81 50-5864-0363",
-      "todo": "ยืนยันว่าคืน 27/11–1/12 พักที่นี่ (การ์ดจองบน Trello มีแค่คืน 24–25/11)"
+      "phone": "+81 50-5864-0363"
     }
   ],
   "days": [
     {
       "index": 0,
-      "en": "Arrive at Narita Airport · Asakusabashi, Akihabara",
-      "ja": "成田空港到着・浅草橋、秋葉原"
+      "en": "Narita Airport (15:05) → Keisei Sky Access train to Asakusabashi → Check in at hotel → Evening in Akihabara",
+      "ja": "成田空港（15:05） → 京成スカイアクセス線で浅草橋へ → ホテルにチェックイン → 夜は秋葉原"
     },
     {
       "index": 1,
-      "en": "Lake Kawaguchiko · Fujinomiya (Lake Tanuki, Shiraito Falls)",
-      "ja": "河口湖・富士宮（田貫湖、白糸の滝）"
+      "en": "Asakusabashi → JR train to Akihabara → Highway bus to Kawaguchiko → Rental car to Fujinomiya (Lake Tanuki, Shiraito Falls) → Hotel in Kawaguchiko",
+      "ja": "浅草橋 → JRで秋葉原へ → 高速バスで河口湖へ → レンタカーで富士宮（田貫湖、白糸の滝） → 河口湖のホテル"
     },
     {
       "index": 2,
-      "en": "Fuji Five Lakes (Yamanakako, Kawaguchiko, Saiko, Shojiko, Motosuko)",
-      "ja": "富士五湖（山中湖、河口湖、西湖、精進湖、本栖湖）"
+      "en": "Leave hotel → Drive around the Fuji Five Lakes → Lake Yamanakako → Lake Kawaguchiko → Lake Saiko → Lake Shojiko → Lake Motosuko → Back to hotel",
+      "ja": "ホテルを出発 → 車で富士五湖めぐり → 山中湖 → 河口湖 → 西湖 → 精進湖 → 本栖湖 → ホテルに戻る"
     },
     {
       "index": 3,
-      "en": "Lake Kawaguchiko · Highway bus to Tokyo · Tokyo Skytree",
-      "ja": "河口湖・高速バスで東京へ・東京スカイツリー"
+      "en": "Kawaguchiko Maple Corridor → Return rental car → Highway bus to Tokyo Station → JR train to Asakusabashi, check in at hotel → Toei Asakusa Line to Tokyo Skytree",
+      "ja": "河口湖もみじ回廊 → レンタカー返却 → 高速バスで東京駅へ → JRで浅草橋へ、ホテルにチェックイン → 都営浅草線で東京スカイツリーへ"
     },
     {
       "index": 4,
-      "en": "Gotokuji Temple, Shinjuku, Meiji Jingu, Omotesando, Shibuya",
-      "ja": "豪徳寺、新宿、明治神宮、表参道、渋谷"
+      "en": "Asakusabashi → JR to Shinjuku → Odakyu Line to Gotokuji Temple → Shinjuku → JR Yamanote Line to Harajuku (Meiji Jingu, Yoyogi Park) → Omotesando → Shibuya → Back to hotel",
+      "ja": "浅草橋 → JRで新宿へ → 小田急線で豪徳寺へ → 新宿 → JR山手線で原宿へ（明治神宮、代々木公園） → 表参道 → 渋谷 → ホテルに戻る"
     },
     {
       "index": 5,
-      "en": "Enoshima, Kamakura (Kotoku-in), Shinjuku",
-      "ja": "江の島、鎌倉（高徳院）、新宿"
+      "en": "Bakurocho → JR Sobu Line to Ofuna → Shonan Monorail to Enoshima → Enoden Line to Kamakura (Great Buddha, Komachi Street) → JR Shonan-Shinjuku Line to Shinjuku → Back to hotel",
+      "ja": "馬喰町 → JR総武線で大船へ → 湘南モノレールで江の島へ → 江ノ電で鎌倉へ（大仏、小町通り） → JR湘南新宿ラインで新宿へ → ホテルに戻る"
     },
     {
       "index": 6,
-      "en": "Akihabara, Kanda Myojin, Yanaka Ginza, Ueno",
-      "ja": "秋葉原、神田明神、谷中銀座、上野"
+      "en": "Asakusabashi → JR to Akihabara → Kanda Myojin Shrine → Tokyo Metro Chiyoda Line to Yanaka Ginza → JR Yamanote Line to Ueno (Ueno Park, Ameyoko) → Back to hotel",
+      "ja": "浅草橋 → JRで秋葉原へ → 神田明神 → 東京メトロ千代田線で谷中銀座へ → JR山手線で上野へ（上野公園、アメ横） → ホテルに戻る"
     },
     {
       "index": 7,
-      "en": "Asakusa (Senso-ji) · Depart from Haneda Airport",
-      "ja": "浅草（浅草寺）・羽田空港より出国"
+      "en": "Check out → Toei Asakusa Line to Asakusa (Senso-ji Temple, Nakamise Street) → Hotel for luggage → Train to Haneda Airport Terminal 2 → Tax refund and check-in",
+      "ja": "チェックアウト → 都営浅草線で浅草へ（浅草寺、仲見世通り） → ホテルで荷物受け取り → 電車で羽田空港第2ターミナルへ → 免税手続きと搭乗手続き"
     },
     {
       "index": 8,
-      "en": "Arrive in Bangkok",
-      "ja": "バンコク到着"
+      "en": "Haneda Airport (01:25) → Bangkok",
+      "ja": "羽田空港（01:25） → バンコク"
     }
   ]
 }
