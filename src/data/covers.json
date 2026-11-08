@@ -2,15 +2,15 @@
   "hero": "hero-fuji",
   "fallback": "fallback-fuji",
   "cards": {
-    "6aa12d481beb4e0c3d4a5d55": "akihabara",
+    "6aa12d481beb4e0c3d4a5d55": "route-inn-asakusabashi",
     "6aaba0980a0fff954508f310": "shiraito",
     "6ab49087809989ec106f41a4": "fuji-lakes",
     "6aab9bc49faeca12ae71dbdf": "skytree",
-    "6aab9a7356f66d80f2b83dd4": "gotokuji",
+    "6aab9a7356f66d80f2b83dd4": "gotokuji-maneki",
     "6aab9b0c53c5712b12477153": "kamakura",
-    "6aab9b5a06c036742dbb193d": "ameyoko",
+    "6aab9b5a06c036742dbb193d": "akihabara-neon",
     "6aab9b715f80565d1125e1f5": "sensoji",
-    "6aafcdda38f99f2de39bfe3a": "suvarnabhumi"
+    "6aafcdda38f99f2de39bfe3a": "suvarnabhumi-giant"
   },
   "credits": {
     "hero-fuji": {
@@ -20,19 +20,19 @@
       "license": "CC BY 2.0",
       "source": "https://commons.wikimedia.org/wiki/File:Lake_Kawaguchiko_and_Mount_Fuji_at_sunset_during_the_Momijigari_period.jpg"
     },
-    "akihabara": {
-      "file": "akihabara.webp",
-      "title": "Akihabara Night.jpg",
-      "artist": "ElHeineken",
-      "license": "CC BY 4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Akihabara_Night.jpg"
+    "route-inn-asakusabashi": {
+      "file": "route-inn-asakusabashi.webp",
+      "title": "Hotel Route-Inn Grand Tokyo Asakusabashi.jpg",
+      "artist": "Hotel Route-Inn",
+      "license": "Hotel listing photo",
+      "source": "https://www.route-inn.co.jp/"
     },
-    "gotokuji": {
-      "file": "gotokuji.webp",
-      "title": "2015-10-20 Maneki neko in Gotokuji 04.jpg",
-      "artist": "John Gillespie",
-      "license": "CC BY-SA 2.0",
-      "source": "https://commons.wikimedia.org/wiki/File:2015-10-20_Maneki_neko_in_Gotokuji_04.jpg"
+    "gotokuji-maneki": {
+      "file": "gotokuji-maneki.webp",
+      "title": "Maneki neko at Gotokuji Temple.jpg",
+      "artist": "Shutterstock",
+      "license": "Shutterstock licence",
+      "source": "https://www.shutterstock.com/image-photo/1452615377"
     },
     "kamakura": {
       "file": "kamakura.webp",
@@ -62,19 +62,19 @@
       "license": "CC0",
       "source": "https://commons.wikimedia.org/wiki/File:Kawaguchiko,_Part_II_-_Kawaguchiko6805.jpg"
     },
-    "ameyoko": {
-      "file": "ameyoko.webp",
-      "title": "Ameyoko Shopping Streets, Ueno (53416667926).jpg",
-      "artist": "Stephen Kelly from San Francisco, CA, USA",
-      "license": "CC BY 2.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Ameyoko_Shopping_Streets,_Ueno_(53416667926).jpg"
+    "akihabara-neon": {
+      "file": "akihabara-neon.webp",
+      "title": "Akihabara Neon Nightscape.jpg",
+      "artist": "GaijinPot",
+      "license": "All rights reserved",
+      "source": "https://blog.gaijinpot.com/app/uploads/sites/4/2017/05/Akihabara-Neon-Nightscape-1024x683.jpg"
     },
-    "suvarnabhumi": {
-      "file": "suvarnabhumi.webp",
-      "title": "Suvarnabhumi Airport Terminal E interior at dusk.jpg",
-      "artist": "Grendelkhan",
-      "license": "CC BY-SA 3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Suvarnabhumi_Airport_Terminal_E_interior_at_dusk.jpg"
+    "suvarnabhumi-giant": {
+      "file": "suvarnabhumi-giant.webp",
+      "title": "Suvarnabhumi Airport departure hall.jpg",
+      "artist": "BangkokAirportOnline.com",
+      "license": "All rights reserved",
+      "source": "https://www.bangkokairportonline.com/"
     },
     "skytree": {
       "file": "skytree.webp",
