@@ -84,7 +84,7 @@ Build it to `docs/DESIGN.md`, including the palette tokens, the timeline cards a
 ## Task 6: PWA and offline
 
 - [x] Add `vite-plugin-pwa` with `registerType: 'autoUpdate'` and Workbox `globPatterns` covering `**/*.{html,js,css,json,svg,png,ico,webmanifest}`.
-- [x] Manifest: name `EY Gogo Japan`, short_name `Gogo JP`, `display: standalone`, theme and background colours matching the page, and `lang: th`.
+- [x] Manifest: name `EY GoGo Japan`, short_name `EY GoGo Japan`, `display: standalone`, theme and background colours matching the page, and `lang: th`.
 - [x] Icons: create `public/icon.svg` (a simple 🗻 or torii mark), then generate 192/512/maskable PNGs with `@vite-pwa/assets-generator`.
 
 **Done when:** after `npm run build && npm run preview`, the page loads once online. The browser then goes offline (DevTools → Network → Offline, or a Playwright `context.setOffline(true)`), and a hard reload still renders all 9 Days. Lighthouse reports the app as installable.

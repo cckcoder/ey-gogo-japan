@@ -15,7 +15,7 @@ const tripRange = computed(() =>
 <template>
   <header class="px-5 pt-4 md:px-8 md:pt-6 lg:px-0 lg:pt-0">
     <h1 class="text-[28px] font-semibold leading-tight text-ink md:text-[40px] lg:text-[56px] lg:leading-[1.05]">
-      Japan<br /><span class="text-primary">Trip</span> 2026
+      EY <span class="text-primary">GoGo</span><br />Japan
     </h1>
     <p class="mt-1 text-[13px] text-muted md:mt-3 md:text-[15px]">{{ tripRange }}</p>
   </header>
