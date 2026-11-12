@@ -15,8 +15,8 @@ export default defineConfig({
         'apple-touch-icon-180x180.png',
       ],
       manifest: {
-        name: 'EY Gogo Japan',
-        short_name: 'Gogo JP',
+        name: 'EY GoGo Japan',
+        short_name: 'EY GoGo Japan',
         display: 'standalone',
         lang: 'th',
         start_url: '/',

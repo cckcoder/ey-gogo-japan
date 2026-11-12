@@ -55,10 +55,10 @@ onBeforeUnmount(() => {
 <template>
   <div class="min-h-screen bg-bg text-ink">
     <div class="mx-auto max-w-6xl lg:px-10">
-      <nav class="flex items-center justify-between px-5 pt-5 md:px-8 lg:px-0 lg:pt-8" aria-label="EY Gogo Japan">
+      <nav class="flex items-center justify-between px-5 pt-5 md:px-8 lg:px-0 lg:pt-8" aria-label="EY GoGo Japan">
         <span class="flex items-center gap-2.5 text-[15px] font-semibold text-ink">
           <span class="grid h-9 w-9 place-items-center rounded-full bg-surface text-lg" aria-hidden="true">🇯🇵</span>
-          Gogo Japan
+          EY GoGo Japan
         </span>
         <div class="flex items-center gap-2">
           <ThemeToggle />
