@@ -9,7 +9,6 @@ import {
   formatSheetDate,
   immigration,
   labels,
-  lastDayInJapan,
   nightLabel,
   nights,
   nightsLabel,
@@ -21,11 +20,10 @@ import { snapshot } from '../snapshot'
 
 const PDF_TITLE = 'EY-Japan-Itinerary-2026'
 
-// The time in Japan runs from the arrival flight to the departure flight, not the
-// whole Trip (Day 8 is the landing in Bangkok).
+// The period runs from the arrival flight's date to the departure flight's date (24 Nov – 2 Dec).
 const arrivalDate = immigration.flights.find((flight) => flight.direction === 'arrival')!.date
 const departure = immigration.flights.find((flight) => flight.direction === 'departure')!
-const period = formatPeriod(arrivalDate, lastDayInJapan(departure))
+const period = formatPeriod(arrivalDate, departure.date)
 const length = lengthLabel(stayLength(immigration))
 const missing = todos(immigration).length
 
