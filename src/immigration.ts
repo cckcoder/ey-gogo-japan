@@ -138,21 +138,21 @@ export function formatRange(start: string, end: string): string {
   return startMonth === endMonth ? `${startDay}–${endDay} ${endMonth}` : `${short(start)} – ${short(end)}`
 }
 
-/** Days and nights in Japan, from the arrival flight to the departure flight. */
+/** Days and nights of the trip, from the arrival flight's date to the departure flight's date (24 Nov – 2 Dec = 9 days, 8 nights). */
 export function stayLength(data: ImmigrationData): { days: number; nights: number } {
   const arrival = data.flights.find((flight) => flight.direction === 'arrival')
   const departure = data.flights.find((flight) => flight.direction === 'departure')
   if (!arrival || !departure) return { days: 0, nights: 0 }
-  const nights = Math.round((utc(lastDayInJapan(departure)) - utc(arrival.date)) / DAY_MS)
+  const nights = Math.round((utc(departure.date) - utc(arrival.date)) / DAY_MS)
   return { days: nights + 1, nights }
 }
 
-/** `8 days, 7 nights` / `7泊8日` (Japanese puts nights first). */
+/** `9 days, 8 nights` / `8泊9日` (Japanese puts nights first). */
 export function lengthLabel({ days, nights }: { days: number; nights: number }): Bilingual {
   return { en: `${days} days, ${nights} ${nights === 1 ? 'night' : 'nights'}`, ja: `${nights}泊${days}日` }
 }
 
-/** A period with the year: `24 Nov – 1 Dec 2026`. */
+/** A period with the year: `24 Nov – 2 Dec 2026`. */
 export function formatPeriod(first: string, last: string): string {
   return `${short(first)} – ${short(last)} ${year.format(new Date(utc(last)))}`
 }

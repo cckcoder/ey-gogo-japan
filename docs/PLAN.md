@@ -163,7 +163,7 @@ Build `#/immigration` to the **Immigration Sheet** section of `docs/DESIGN.md`. 
 **Done when:**
 - New Vitest cases pass, and `npm test` is green:
   - `immigration.json` has one `days` entry for each Day of the Snapshot, with the same indexes.
-  - The Stays don't overlap, and `totalNights` is 7. The stay in Japan is 8 days, 7 nights (`7泊8日`), from the arrival flight to the departure flight.
+  - The Stays don't overlap, and `totalNights` is 7. The trip is 9 days, 8 nights (`8泊9日`, 24 Nov – 2 Dec): 7 nights in Stays plus the night in flight.
   - The view shows one placeholder per `todo` (3 in the current file) and the matching count.
   - `stayForNight` returns Toyoko Inn for `2026-11-26`, Route-Inn for `2026-11-27`, and `null` for `2026-12-01`.
   - Neither `immigration.json` nor the rendered sheet contains an email address, `¥`, `円` amounts or a reservation-number pattern (`/\d{8,}/`).

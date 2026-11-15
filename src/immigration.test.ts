@@ -70,11 +70,11 @@ describe('SENSITIVE', () => {
 })
 
 describe('stayLength', () => {
-  it('counts 8 days and 7 nights in Japan, matching the Stays', () => {
+  it('counts 9 days and 8 nights: the 7 nights in Stays plus the night in flight', () => {
     const length = stayLength(immigration)
-    expect(length).toEqual({ days: 8, nights: 7 })
-    expect(length.nights).toBe(totalNights(immigration.stays))
-    expect(lengthLabel(length)).toEqual({ en: '8 days, 7 nights', ja: '7泊8日' })
+    expect(length).toEqual({ days: 9, nights: 8 })
+    expect(length.nights).toBe(totalNights(immigration.stays) + 1)
+    expect(lengthLabel(length)).toEqual({ en: '9 days, 8 nights', ja: '8泊9日' })
   })
 })
 
@@ -107,6 +107,6 @@ describe('sheet dates', () => {
     expect(formatSheetDate('2026-11-24')).toBe('Tue 24 Nov')
     expect(formatRange('2026-11-24', '2026-11-25')).toBe('24–25 Nov')
     expect(formatRange('2026-11-27', '2026-12-01')).toBe('27 Nov – 1 Dec')
-    expect(formatPeriod('2026-11-24', '2026-12-01')).toBe('24 Nov – 1 Dec 2026')
+    expect(formatPeriod('2026-11-24', '2026-12-02')).toBe('24 Nov – 2 Dec 2026')
   })
 })
